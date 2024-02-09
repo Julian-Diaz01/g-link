@@ -1,9 +1,9 @@
-import React from 'react';
+import React from 'react'
+import { Typography } from '@mui/material'
 
 const Home: React.FC = () => {
-    return (
-        <div>Home</div>
-    );
-};
+  console.log('here')
+  return <Typography variant="h4">Julian Diaz</Typography>
+}
 
-export default Home;
+export default Home
