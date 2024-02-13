@@ -12,13 +12,13 @@ import { getAnalytics } from 'firebase/analytics'
 import PageStructure from './components/Page.tsx'
 
 const firebaseConfig = {
-  apiKey: 'AIzaSyCJsDstMAzyu8zVjXS-0ULxoA9y_SDYk68',
-  authDomain: 'myportfolio-16d89.firebaseapp.com',
-  projectId: 'myportfolio-16d89',
-  storageBucket: 'myportfolio-16d89.appspot.com',
-  messagingSenderId: '252505600556',
-  appId: '1:252505600556:web:2db99446336490bbdbd789',
-  measurementId: 'G-PE794FJPE6',
+  apiKey: process.env.REACT_APP_API_KEY,
+  authDomain: process.env.REACT_APP_AUTH_DOMAIN,
+  projectId: process.env.REACT_APP_PROJECT_ID,
+  storageBucket: process.env.REACT_APP_STORAGE_BUCKET,
+  messagingSenderId: process.env.REACT_APP_MESSAGING_SENDER_ID,
+  appId: process.env.REACT_APP_APP_ID,
+  measurementId: process.env.REACT_APP_MEASUREMENT_ID
 }
 
 const router = createBrowserRouter(
