@@ -40,7 +40,7 @@ const Header: React.FC = () => {
             sx={tabStyles.tab}
           >
             {' '}
-            <Tab value="h" label="Home" component={Link} to="/" />
+            <Tab value="home" label="Home" component={Link} to="/" />
             <Tab
               value="register"
               label="Register"
@@ -65,6 +65,9 @@ const tabStyles = {
   tab: {
     '& .MuiTab-root': {
       color: theme.palette.secondary.main,
+      '& .Mui-selected': {
+        color: theme.palette.secondary.main,
+      },
     },
     '& .Mui-selected': {
       fontWeight: 'bold',
