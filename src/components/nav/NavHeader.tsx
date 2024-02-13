@@ -1,5 +1,4 @@
-import React from 'react'
-import { useState } from 'react'
+import React, { useState } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
@@ -9,20 +8,20 @@ import { Box } from '@mui/material'
 import theme from '../../theme.tsx'
 
 const Header: React.FC = () => {
-  const [value, setValue] = useState('h')
+  const [value, setValue] = useState('home')
   const navigate = useNavigate()
 
   const handleChange = (_event: React.SyntheticEvent, newValue: string) => {
     setValue(newValue)
     // Navigate based on tab value
     switch (newValue) {
-      case 'h':
+      case 'home':
         navigate('/')
         break
-      case 'r':
+      case 'register':
         navigate('/register')
         break
-      case 'l':
+      case 'login':
         navigate('/login')
         break
       default:
@@ -42,9 +41,14 @@ const Header: React.FC = () => {
           >
             {' '}
             <Tab value="h" label="Home" component={Link} to="/" />
-            <Tab value="r" label="Register" component={Link} to="/register" />
             <Tab
-              value="l"
+              value="register"
+              label="Register"
+              component={Link}
+              to="/register"
+            />
+            <Tab
+              value="login"
               label="Login"
               component={Link}
               to="/login"
