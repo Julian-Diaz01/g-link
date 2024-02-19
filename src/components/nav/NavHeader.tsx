@@ -4,8 +4,9 @@ import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Tabs from '@mui/material/Tabs'
 import Tab from '@mui/material/Tab'
-import { Box } from '@mui/material'
+import { Box, IconButton } from '@mui/material'
 import theme from '../../theme.tsx'
+import HexagonJ from '../../assets/HexagonJ.tsx'
 
 const Header: React.FC = () => {
   const [value, setValue] = useState('home')
@@ -32,7 +33,14 @@ const Header: React.FC = () => {
   return (
     <Box sx={{ flexGrow: 1 }}>
       <AppBar position="static" color="transparent" elevation={0}>
-        <Toolbar>
+        <Toolbar sx={{ justifyContent: 'space-between' }}>
+          <IconButton sx={{ mr: 2, ml: 10 }}>
+            <HexagonJ
+              borderColor="secondary"
+              borderThickness={3}
+              textColor="secondary"
+            />
+          </IconButton>
           <Tabs
             value={value}
             onChange={handleChange}
@@ -63,6 +71,7 @@ const Header: React.FC = () => {
 
 const tabStyles = {
   tab: {
+    mr: 10,
     '& .MuiTab-root': {
       color: theme.palette.secondary.main,
       '& .Mui-selected': {
