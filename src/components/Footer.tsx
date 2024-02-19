@@ -16,6 +16,8 @@ const Footer: React.FC = () => {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
+        mr: 10,
+        ml: 10,
       }}
     >
       <Box>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Container, Box } from '@mui/material'
+import { Box, Container } from '@mui/material'
 import Footer from './Footer.tsx'
 import { Outlet } from 'react-router-dom'
 import Header from './nav/NavHeader.tsx'
@@ -16,10 +16,11 @@ const Layout: React.FC = () => {
       <Header />
       <Container
         component="main"
-        maxWidth="lg"
         sx={{
+          maxWidth: 'none !important',
           flexGrow: 1,
           overflow: 'auto',
+          padding: 0,
         }}
       >
         <Outlet />
