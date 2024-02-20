@@ -4,12 +4,13 @@ import {
   Route,
   RouterProvider,
 } from 'react-router-dom'
-import Register from './pages/auth/Register'
-import Login from './pages/auth/Login.tsx'
+import Projects from './pages/Projects/Projects.tsx'
 import Home from './pages/Home/Home.tsx'
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
 import PageStructure from './components/Page.tsx'
+import InteractiveBackground from './components/InteractiveBackground.tsx'
+import NotFoundPage from './pages/NotFoundPage.tsx'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -25,8 +26,8 @@ const router = createBrowserRouter(
   createRoutesFromElements(
     <Route path="/" element={<PageStructure />}>
       <Route index element={<Home />} />
-      <Route path="login" element={<Login />} />
-      <Route path="register" element={<Register />} />
+      <Route path="projects" element={<Projects />} />
+      <Route path="*" element={<NotFoundPage />} />
     </Route>,
   ),
 )
@@ -37,6 +38,7 @@ function App() {
   console.log(analytics)
   return (
     <>
+      <InteractiveBackground />
       <RouterProvider router={router} />
     </>
   )
