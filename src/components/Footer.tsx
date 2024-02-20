@@ -2,6 +2,8 @@ import React from 'react'
 import { Box, Link } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
+import EmailIcon from '@mui/icons-material/Email'
+import theme from '../theme.tsx'
 
 const Footer: React.FC = () => {
   return (
@@ -10,39 +12,46 @@ const Footer: React.FC = () => {
       sx={{
         maxWidth: '1200px',
         margin: 'auto',
-        color: 'white',
+        color: `${theme.palette.secondary.main}`,
         py: 2,
         mt: 'auto',
         display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'space-between',
+        justifyContent: 'flex-end',
         mr: 10,
         ml: 10,
       }}
     >
       <Box>
-        <Link
-          href="https://github.com/Julian-Diaz01"
-          target="_blank"
-          rel="noopener noreferrer"
-          color="inherit"
-          sx={{ ml: 2, display: 'flex', alignItems: 'center' }}
-        >
-          <GitHubIcon sx={{ mr: 1 }} />
-          https://github.com/Julian-Diaz01
-        </Link>
-        <Link
-          href="https://www.linkedin.com/in/julian-ddiaz/"
-          target="_blank"
-          rel="noopener noreferrer"
-          color="inherit"
-          sx={{ ml: 2, display: 'flex', alignItems: 'center' }}
-        >
-          <LinkedInIcon sx={{ mr: 1 }} />
-          https://www.linkedin.com/in/julian-ddiaz/
-        </Link>
+        <FooterLink href="https://github.com/Julian-Diaz01">
+          <GitHubIcon />
+        </FooterLink>
+        <FooterLink href="https://www.linkedin.com/in/julian-ddiaz/">
+          <LinkedInIcon />
+        </FooterLink>
+        <FooterLink href="mailto:judadi1994@gmail.com">
+          <EmailIcon />
+        </FooterLink>
       </Box>
     </Box>
+  )
+}
+
+interface FooterLinkProps {
+  href: string
+  children: React.ReactNode
+}
+
+const FooterLink: React.FC<FooterLinkProps> = ({ href, children }) => {
+  return (
+    <Link
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      color="inherit"
+      sx={{ m: 1 }}
+    >
+      {children}
+    </Link>
   )
 }
 

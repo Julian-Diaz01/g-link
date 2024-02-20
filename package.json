@@ -9,7 +9,8 @@
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "lint:fix": "eslint . --fix",
     "reformat": " npx prettier --write .",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "deploy" :  "tsc && vite build && firebase deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
