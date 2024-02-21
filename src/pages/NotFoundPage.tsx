@@ -44,7 +44,7 @@ const NotFoundPage: React.FC = () => {
         }}
       >
         <img
-          src="public/not_found.jpeg"
+          src="/not_found.jpeg"
           alt=" "
           style={{
             width: '100%',

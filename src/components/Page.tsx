@@ -11,6 +11,8 @@ const Layout: React.FC = () => {
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
+        mr: '10vw',
+        ml: '10vw',
       }}
     >
       <Header />

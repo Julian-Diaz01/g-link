@@ -11,6 +11,7 @@ import {
   List,
   ListItemButton,
   ListItemText,
+  Typography,
   useMediaQuery,
   useTheme,
 } from '@mui/material'
@@ -65,7 +66,7 @@ const Header: React.FC = () => {
 }
 
 const HexagonJLink: React.FC = () => (
-  <Box sx={{ mr: 2, ml: 10 }}>
+  <Box>
     <Link to="/">
       <HexagonJ borderColor="secondary" borderThickness={3} />
     </Link>
@@ -81,7 +82,7 @@ const MobileMenuIcon: React.FC<{
     onClick={toggleMobileDrawer(true)}
     sx={{ display: { lg: 'none' } }}
   >
-    <MenuIcon />
+    <MenuIcon sx={{ fontSize: '2rem' }} />
   </IconButton>
 )
 
@@ -114,20 +115,26 @@ const MobileDrawerList: React.FC<{
   }
 
   const openResumeInNewTab = () => {
-    window.open('public/CV.pdf', '_blank')
+    window.open('CV.pdf', '_blank')
     toggleMobileDrawer(false)()
   }
 
   return (
-    <List>
+    <List sx={{ width: '100%', padding: '16px' }}>
       <ListItemButton onClick={navigateAndCloseDrawer('/')}>
-        <ListItemText primary="Home" />
+        <ListItemText>
+          <Typography variant="h5">About</Typography>
+        </ListItemText>
       </ListItemButton>
       <ListItemButton onClick={navigateAndCloseDrawer('/projects')}>
-        <ListItemText primary="Projects" />
+        <ListItemText>
+          <Typography variant="h5">Projects</Typography>
+        </ListItemText>
       </ListItemButton>
       <ListItemButton onClick={openResumeInNewTab}>
-        <ListItemText primary="Resume" />
+        <ListItemText>
+          <Typography variant="h5">Resume</Typography>
+        </ListItemText>
       </ListItemButton>
     </List>
   )
@@ -144,12 +151,12 @@ const DesktopTabs: React.FC<{
       onChange={handleChange}
       aria-label="Navigation Tabs"
       sx={{
-        mr: 10,
         ...tabStyles.tab,
         color: theme.palette.secondary.main,
+        minHeight: 30,
       }}
     >
-      <Tab disableRipple value="home" label="Home" component={Link} to="/" />
+      <Tab disableRipple value="home" label="About" component={Link} to="/" />
       <Tab
         disableRipple
         value="projects"
@@ -157,29 +164,32 @@ const DesktopTabs: React.FC<{
         component={Link}
         to="/projects"
       />
-      <OpenPdfButton pdfUrl="src/assets/CV.pdf" />
+      <OpenPdfButton pdfUrl="CV.pdf" />
     </Tabs>
   )
 }
 
 const tabStyles = {
   tab: {
+    '& .MuiButtonBase-root': {
+      minHeight: 30,
+      minWidth: 0,
+    },
     '& .MuiTabs-indicator': {
       display: 'flex',
       justifyContent: 'center',
-      backgroundColor: theme.palette.secondary.main + '00',
-      color: theme.palette.secondary.main + '!important',
+      backgroundColor: theme.palette.text.primary,
+      color: theme.palette.text.primary + '!important',
     },
     '& .MuiTab-root': {
-      fontFamily: 'monospace',
-      color: theme.palette.secondary.main + '!important',
+      color: theme.palette.text.primary + '!important',
     },
     '& .Mui-selected': {
       fontWeight: 'bold',
-      color: theme.palette.secondary.main,
+      color: theme.palette.text.primary,
     },
     '& .MuiTab-textColorInherit.Mui-selected': {
-      color: theme.palette.secondary.main,
+      color: theme.palette.text.primary,
     },
   },
 }
