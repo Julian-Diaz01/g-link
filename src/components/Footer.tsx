@@ -1,11 +1,13 @@
 import React from 'react'
-import { Box, Link } from '@mui/material'
+import { Box, Link, useMediaQuery, useTheme } from '@mui/material'
 import GitHubIcon from '@mui/icons-material/GitHub'
 import LinkedInIcon from '@mui/icons-material/LinkedIn'
 import EmailIcon from '@mui/icons-material/Email'
-import theme from '../theme.tsx'
 
 const Footer: React.FC = () => {
+  const theme = useTheme()
+  const isMobile = useMediaQuery(theme.breakpoints.down('md'))
+
   return (
     <Box
       component="footer"
@@ -16,22 +18,18 @@ const Footer: React.FC = () => {
         py: 2,
         mt: 'auto',
         display: 'flex',
-        justifyContent: 'flex-end',
-        mr: 10,
-        ml: 10,
+        justifyContent: isMobile ? 'space-around' : 'flex-end',
       }}
     >
-      <Box>
-        <FooterLink href="https://github.com/Julian-Diaz01">
-          <GitHubIcon />
-        </FooterLink>
-        <FooterLink href="https://www.linkedin.com/in/julian-ddiaz/">
-          <LinkedInIcon />
-        </FooterLink>
-        <FooterLink href="mailto:judadi1994@gmail.com">
-          <EmailIcon />
-        </FooterLink>
-      </Box>
+      <FooterLink href="https://github.com/Julian-Diaz01">
+        <GitHubIcon sx={{ fontSize: isMobile ? '2rem' : undefined }} />
+      </FooterLink>
+      <FooterLink href="https://www.linkedin.com/in/julian-ddiaz/">
+        <LinkedInIcon sx={{ fontSize: isMobile ? '2rem' : undefined }} />
+      </FooterLink>
+      <FooterLink href="mailto:judadi1994@gmail.com">
+        <EmailIcon sx={{ fontSize: isMobile ? '2rem' : undefined }} />
+      </FooterLink>
     </Box>
   )
 }

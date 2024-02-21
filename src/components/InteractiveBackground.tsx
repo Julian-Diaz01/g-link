@@ -29,7 +29,7 @@ const InteractiveBackground: React.FC = () => {
         width: '100vw',
         height: '100vh',
         backgroundColor: theme.palette.primary.main,
-        backgroundImage: `radial-gradient(circle at ${position.x}px ${position.y}px, #65593112 0%, ${theme.palette.primary.main} 50vh)`,
+        backgroundImage: `radial-gradient(circle at ${position.x}px ${position.y}px, #65593120 0%, ${theme.palette.primary.main} 30vh)`,
         backgroundRepeat: 'no-repeat',
         zIndex: -1,
       }}

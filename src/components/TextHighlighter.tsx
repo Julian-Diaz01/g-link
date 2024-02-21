@@ -5,12 +5,14 @@ interface TextHighlighterProps extends TypographyProps {
   children: string
   highlightText: string[]
   highlightTextColor?: string
+  hoverHighlightColor?: string
 }
 
 const TextHighlighter: React.FC<TextHighlighterProps> = ({
   children,
   highlightText,
   highlightTextColor = 'yellow',
+  hoverHighlightColor = 'yellow',
   sx,
   ...typographyProps
 }) => {
@@ -29,7 +31,8 @@ const TextHighlighter: React.FC<TextHighlighterProps> = ({
   const highlightedText = highlightText.reduce((text, highlight) => {
     return text.replace(
       new RegExp(`(${highlight})`, 'gi'),
-      (_match, p1) => `<span style="color: ${highlightTextColor}">${p1}</span>`,
+      (_match, p1) =>
+        `<span style="color: ${highlightTextColor};" onmouseover="this.style.color='${hoverHighlightColor}'" onmouseout="this.style.color='${highlightTextColor}'">${p1}</span>`,
     )
   }, children)
 

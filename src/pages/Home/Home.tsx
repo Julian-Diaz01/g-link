@@ -4,12 +4,7 @@ import TextHighlighter from '../../components/TextHighlighter.tsx'
 
 const Home: React.FC = () => {
   return (
-    <Box
-      sx={{
-        mr: 10,
-        ml: 10,
-      }}
-    >
+    <Box>
       <Typography color="secondary" sx={{ fontFamily: 'monospace' }}>
         Hi, my name is
       </Typography>
@@ -26,7 +21,8 @@ const Home: React.FC = () => {
         Frontend Software Engineer & Creative Designer
       </Typography>
       <TextHighlighter
-        highlightTextColor="#f5c422"
+        hoverHighlightColor="#f5c422"
+        highlightTextColor="#cbd5f4"
         sx={{
           fontWeight: 'bold',
           fontSize: '1rem',
