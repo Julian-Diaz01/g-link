@@ -1,5 +1,16 @@
 {
   "hosting": {
+    "headers": [
+      {
+        "source": "**/*.@(js)",
+        "headers": [
+          {
+            "key": "Content-Type",
+            "value": "application/javascript"
+          }
+        ]
+      }
+    ],
     "site": "juliandiaz",
     "public": "build",
     "ignore": [
