@@ -13,6 +13,9 @@ const theme = createTheme({
       primary: '#cbd5f4',
       secondary: '#0a1930',
     },
+    background: {
+      paper: '#cbd5f4',
+    },
     error: {
       main: '#c74a4a',
     },
