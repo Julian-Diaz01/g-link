@@ -40,8 +40,7 @@ const ShowCat: React.FC = () => {
         <Box
           sx={{
             position: 'absolute',
-            top: '-1.5em',
-            left: '-10em',
+            top: '-7em',
             zIndex: 9999,
           }}
         >
