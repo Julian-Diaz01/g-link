@@ -16,7 +16,7 @@ import {
   useTheme,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import HexagonJ from '../../assets/HexagonJ'
+import IconJ from '../../assets/IconJ.tsx'
 import OpenPdfButton from '../OpenPdfButton'
 import theme from '../../theme.tsx'
 
@@ -46,7 +46,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }}>
+    <Box sx={{ flexGrow: 1 }} id="#home">
       <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <HexagonJLink />
@@ -68,7 +68,7 @@ const Header: React.FC = () => {
 const HexagonJLink: React.FC = () => (
   <Box>
     <Link to="/">
-      <HexagonJ borderColor="secondary" borderThickness={3} />
+      <IconJ borderColor="secondary" borderThickness={3} />
     </Link>
   </Box>
 )
