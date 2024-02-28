@@ -38,6 +38,7 @@ const TextHighlighter: React.FC<TextHighlighterProps> = ({
 
   return (
     <Typography
+      component="span"
       onMouseUp={handleSelection}
       sx={sx}
       {...typographyProps}

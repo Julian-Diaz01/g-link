@@ -68,6 +68,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
       fontSize: '1rem',
       '&:hover': {
         color: theme.palette.secondary.main + '!important',
+        a: { color: theme.palette.secondary.main + '!important' },
       },
     },
     titleIcon: { fontSize: '17px' },

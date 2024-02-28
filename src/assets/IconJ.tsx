@@ -8,7 +8,7 @@ interface HexagonJProps {
   hoverColor?: string // New prop for hover color
 }
 
-const HexagonJ: React.FC<HexagonJProps> = ({
+const IconJ: React.FC<HexagonJProps> = ({
   borderColor = Theme.palette.secondary.main,
   textColor = Theme.palette.secondary.main,
   borderThickness = 2,
@@ -37,10 +37,11 @@ const HexagonJ: React.FC<HexagonJProps> = ({
         .hexagon { stroke: ${borderColor}; stroke-width: ${borderThickness}px; fill: ${isHovered ? textColor : 'none'}; }
         .letter { fill: ${isHovered ? hoverColor : textColor}; font-size: 40px; font-family: Arial; }
       `}</style>
-      <polygon
-        points="50,10 90,25 90,75 50,90 10,75 10,25"
+      <circle
         stroke="#f5c422"
-        className="hexagon"
+        cx="50"
+        cy="50"
+        r="40"
         fill="none"
         strokeWidth="3"
       />
@@ -59,4 +60,4 @@ const HexagonJ: React.FC<HexagonJProps> = ({
   )
 }
 
-export default HexagonJ
+export default IconJ

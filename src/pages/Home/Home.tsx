@@ -1,79 +1,172 @@
-import React from 'react'
-import { Grid, Typography } from '@mui/material'
+import React, { useEffect, useState } from 'react'
+import { Box, Container, Grid, Typography, useMediaQuery } from '@mui/material'
 import TextHighlighter from '../../components/TextHighlighter.tsx'
 import ProjectCard from '../../components/ProjectCard.tsx'
 import ShowCat from '../../components/ShowCat.tsx'
+import theme from '../../theme.tsx'
 
 const Home: React.FC = () => {
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
   return (
-    <>
-      <Introduction />
-      <Experience />
-    </>
+    <Container fixed>
+      <Grid container sx={{ mt: 10 }}>
+        <Grid item md={12} lg={5}>
+          <Box
+            sx={{
+              width: isMobile ? '100%' : '30.666%',
+              position: isMobile ? 'inherit' : 'fixed',
+            }}
+          >
+            <Introduction />
+            {!isMobile ? <Menu /> : <div></div>}
+          </Box>
+        </Grid>
+        <Grid
+          item
+          md={12}
+          lg={7}
+          sx={{ mt: isMobile ? 1 : 5, pl: isMobile ? 0 : 4 }}
+        >
+          <Description />
+          <Box sx={{ mt: 20 }}>
+            <div id="#experidence" />
+          </Box>
+          <Experience />
+        </Grid>
+      </Grid>
+    </Container>
+  )
+}
+
+const Menu: React.FC = () => {
+  const [activeAnchor, setActiveAnchor] = useState<string>('')
+  useEffect(() => {
+    const handleScroll = () => {
+      const scrollPosition = window.scrollY
+      const aboutSection = document.getElementById('#home')
+      const experienceSection = document.getElementById('#experience')
+
+      if (aboutSection && experienceSection) {
+        const experienceOffset = experienceSection.offsetTop
+
+        if (scrollPosition < experienceOffset) {
+          setActiveAnchor('#home')
+        } else {
+          setActiveAnchor('#experience')
+        }
+      }
+    }
+
+    window.addEventListener('scroll', handleScroll)
+    handleScroll() // Call initially to set the active anchor
+    return () => window.removeEventListener('scroll', handleScroll)
+  }, [])
+
+  const handleScroll = (anchor: string) => () => {
+    const anchorElement = document.getElementById(anchor)
+    console.log(anchorElement)
+    if (anchorElement) {
+      const scrollPosition =
+        anchor === 'experience'
+          ? anchorElement.offsetTop - 10
+          : anchorElement.offsetTop
+      window.scrollTo({ top: scrollPosition, behavior: 'smooth' })
+    }
+  }
+
+  return (
+    <Box sx={{ mt: 5 }}>
+      <Typography
+        variant="body1"
+        color={activeAnchor === '#home' ? 'secondary' : 'inherit'}
+        sx={{
+          cursor: 'pointer',
+          fontSize: activeAnchor === '#home' ? '1.2rem' : '1rem',
+          mr: 2,
+        }}
+        onClick={handleScroll('#home')}
+      >
+        About
+      </Typography>
+      <Typography
+        variant="body1"
+        color={activeAnchor === '#experience' ? 'secondary' : 'inherit'}
+        sx={{
+          cursor: 'pointer',
+          fontSize: activeAnchor === '#experience' ? '1.2rem' : '1rem',
+        }}
+        onClick={handleScroll('#experience')}
+      >
+        Experience
+      </Typography>
+    </Box>
   )
 }
 
 const Introduction: React.FC = () => {
   return (
-    <Grid container sx={{ mt: 10 }} spacing={3}>
-      <Grid item md={12} lg={6} component="div">
-        <Typography color="secondary" sx={{ fontFamily: 'monospace' }}>
-          Hi, my name is
-        </Typography>
-        <Typography
-          color="text.primary"
-          sx={{ fontWeight: 'bold', fontSize: '3rem', opacity: '80%' }}
-        >
-          Julian D. Diaz.
-        </Typography>
-        <Typography
-          color="text.primary"
-          sx={{ fontWeight: 'bold', fontSize: '2rem', opacity: '60%' }}
-        >
-          Frontend Software Engineer & Creative Designer
-        </Typography>
-      </Grid>
-      <Grid item md={12} lg={6} component="div" sx={{ mt: 10 }}>
-        <TextHighlighter
-          hoverHighlightColor="#f5c422"
-          highlightTextColor="#cbd5f4"
-          sx={{
-            fontWeight: 'bold',
-            fontSize: '1rem',
-            color: '#cbd5f470',
-          }}
-          highlightText={[
-            'user-centric solutions',
-            'Creative Technologies',
-            'Multimedia Engineering',
-          ]}
-        >
-          I am an accomplished Frontend Engineer with a robust background in web
-          and mobile application development, having spearheaded significant
-          projects in both B2B and B2C domains. My journey in technology spans
-          from conceptualization to deployment, with a steadfast commitment to
-          crafting user-centric, streamlined solutions. Holding a Master's in
-          Creative Technologies and a Bachelor's in Multimedia Engineering, I
-          wield a diverse arsenal of technical and design tools, showcasing a
-          versatile skill set that resonates across the tech industry.
-        </TextHighlighter>
-        <Typography
-          sx={{
-            mt: 2,
-            fontWeight: 'bold',
-            fontSize: '1rem',
-            color: '#cbd5f470',
-          }}
-        >
-          Outside of coding, you'll often find me exploring the vibrant streets
-          of Berlin on my bike or enjoying downtime with my cat, <ShowCat />.
-        </Typography>
-      </Grid>
-    </Grid>
+    <>
+      <Typography color="secondary" sx={{ fontFamily: 'monospace' }}>
+        Hi, my name is
+      </Typography>
+      <Typography
+        color="text.primary"
+        sx={{ fontWeight: 'bold', fontSize: '3rem', opacity: '80%' }}
+      >
+        Julian D. Diaz
+      </Typography>
+      <Typography
+        color="text.primary"
+        sx={{ fontSize: '1.5rem', opacity: '60%' }}
+      >
+        Frontend Software Engineer & Creative Designer
+      </Typography>
+    </>
+  )
+}
+const Description: React.FC = () => {
+  return (
+    <>
+      <TextHighlighter
+        hoverHighlightColor="#f5c422"
+        highlightTextColor="#cbd5f4"
+        sx={{
+          fontWeight: 'bold',
+          fontSize: '1rem',
+          color: '#cbd5f470',
+        }}
+        highlightText={[
+          'user-centric solutions',
+          'Creative Technologies',
+          'Multimedia Engineering',
+        ]}
+      >
+        I am an accomplished Frontend Engineer with a robust background in web
+        and mobile application development, having spearheaded significant
+        projects in both B2B and B2C domains. My journey in technology spans
+        from conceptualization to deployment, with a steadfast commitment to
+        crafting user-centric, streamlined solutions. Holding a Master's in
+        Creative Technologies and a Bachelor's in Multimedia Engineering, I
+        wield a diverse arsenal of technical and design tools, showcasing a
+        versatile skill set that resonates across the tech industry.
+      </TextHighlighter>
+      <Typography
+        component="span"
+        sx={{
+          mt: 2,
+          fontWeight: 'bold',
+          fontSize: '1rem',
+          color: '#cbd5f470',
+        }}
+      >
+        Outside of coding, you'll often find me exploring the vibrant streets of
+        Berlin on my bike or enjoying downtime with my cat, <ShowCat />.
+      </Typography>
+    </>
   )
 }
 
-interface Project {
+interface Jobs {
   monthYearRange: string
   title: string
   subTitle: string
@@ -83,7 +176,7 @@ interface Project {
   links?: { title: string; url: string }[]
 }
 
-const projects: Project[] = [
+const jobs: Jobs[] = [
   {
     monthYearRange: 'Jun 2020 - Dec 2023',
     title: 'Frontend Engineer',
@@ -151,23 +244,22 @@ const projects: Project[] = [
 
 const Experience: React.FC = () => {
   return (
-    <>
-      <div style={{ height: 50 }} />
-      {projects.map((project, index) => (
+    <Box sx={{ mt: 5 }} id="#experience">
+      {jobs.map((job, index) => (
         <div key={index}>
           <ProjectCard
-            monthYearRange={project.monthYearRange}
-            title={project.title}
-            subTitle={project.subTitle}
-            cardLink={project.cardLink}
-            description={project.description}
-            chips={project.chips}
-            links={project.links}
+            monthYearRange={job.monthYearRange}
+            title={job.title}
+            subTitle={job.subTitle}
+            cardLink={job.cardLink}
+            description={job.description}
+            chips={job.chips}
+            links={job.links}
           />
-          {index !== projects.length - 1 && <div style={{ height: 20 }} />}
+          {index !== jobs.length - 1 && <div style={{ height: 20 }} />}
         </div>
       ))}
-    </>
+    </Box>
   )
 }
 export default Home
