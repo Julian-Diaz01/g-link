@@ -119,7 +119,13 @@ const Introduction: React.FC = () => {
         color="text.primary"
         sx={{ fontSize: '1.5rem', opacity: '60%' }}
       >
-        Frontend Software Engineer & Creative Designer
+        Frontend Software Engineer
+      </Typography>
+      <Typography
+        color="text.primary"
+        sx={{ fontSize: '1.5rem', opacity: '60%' }}
+      >
+        & Creative Designer
       </Typography>
     </>
   )
