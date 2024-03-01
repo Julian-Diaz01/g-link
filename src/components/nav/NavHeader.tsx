@@ -164,7 +164,7 @@ const DesktopTabs: React.FC<{
         component={Link}
         to="/projects"
       />
-      <OpenPdfButton pdfUrl="CV.pdf" />
+      <OpenPdfButton pdfUrl="julian_diaz_cv.pdf" />
     </Tabs>
   )
 }
