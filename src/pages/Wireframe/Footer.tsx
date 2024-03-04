@@ -18,7 +18,7 @@ const Footer: React.FC = () => {
         py: 2,
         mt: 'auto',
         display: 'flex',
-        justifyContent: isMobile ? 'space-around' : 'flex-end',
+        justifyContent: isMobile ? 'space-around' : 'flex-start',
       }}
     >
       <FooterLink href="https://github.com/Julian-Diaz01">

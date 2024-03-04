@@ -8,7 +8,7 @@ import Projects from './pages/Projects/Projects.tsx'
 import Home from './pages/Home/Home.tsx'
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
-import PageStructure from './components/Page.tsx'
+import PageStructure from './pages/Wireframe/Page.tsx'
 import InteractiveBackground from './components/InteractiveBackground.tsx'
 import NotFoundPage from './pages/NotFoundPage.tsx'
 

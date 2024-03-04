@@ -10,22 +10,23 @@
     "lint:fix": "eslint . --fix",
     "reformat": " npx prettier --write .",
     "preview": "vite preview",
-    "deploy" :  "tsc && vite build && firebase deploy"
+    "deploy": "tsc && vite build && firebase deploy"
   },
   "dependencies": {
     "@emotion/react": "^11.11.3",
     "@emotion/styled": "^11.11.0",
     "@mui/icons-material": "^5.15.7",
     "@mui/material": "^5.15.7",
+    "@react-buddy/ide-toolbox": "^2.4.0",
+    "@react-buddy/palette-mui": "^5.0.1",
     "axios": "^1.6.7",
     "firebase": "^10.8.0",
+    "framer-motion": "^11.0.8",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-json-pretty": "^2.2.0",
     "react-router-dom": "^6.22.0",
-    "vite-plugin-eslint": "^1.8.1",
-    "@react-buddy/ide-toolbox": "^2.4.0",
-    "@react-buddy/palette-mui": "^5.0.1"
+    "vite-plugin-eslint": "^1.8.1"
   },
   "devDependencies": {
     "@types/react": "^18.2.43",
