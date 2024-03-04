@@ -25,7 +25,6 @@ const ShowCat: React.FC = () => {
     >
       <Typography
         sx={{
-          fontWeight: 'bold',
           color: showGif
             ? theme.palette.secondary.main
             : theme.palette.text.primary,

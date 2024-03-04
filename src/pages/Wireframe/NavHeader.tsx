@@ -3,7 +3,6 @@ import { Link, useNavigate } from 'react-router-dom'
 import AppBar from '@mui/material/AppBar'
 import Toolbar from '@mui/material/Toolbar'
 import Tabs from '@mui/material/Tabs'
-import Tab from '@mui/material/Tab'
 import {
   Box,
   Drawer,
@@ -17,7 +16,7 @@ import {
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
 import IconJ from '../../assets/IconJ.tsx'
-import OpenPdfButton from '../OpenPdfButton'
+import OpenPdfButton from '../../components/OpenPdfButton.tsx'
 import theme from '../../theme.tsx'
 
 const Header: React.FC = () => {
@@ -156,14 +155,14 @@ const DesktopTabs: React.FC<{
         minHeight: 30,
       }}
     >
-      <Tab disableRipple value="home" label="About" component={Link} to="/" />
+      {/*  <Tab disableRipple value="home" label="About" component={Link} to="/" />
       <Tab
         disableRipple
         value="projects"
         label="Projects"
         component={Link}
         to="/projects"
-      />
+      />*/}
       <OpenPdfButton pdfUrl="julian_diaz_cv.pdf" />
     </Tabs>
   )

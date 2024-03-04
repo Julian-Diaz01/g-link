@@ -1,10 +1,13 @@
 import React from 'react'
-import { Box, Container } from '@mui/material'
+import { Box, Container, useMediaQuery } from '@mui/material'
 import Footer from './Footer.tsx'
 import { Outlet } from 'react-router-dom'
-import Header from './nav/NavHeader.tsx'
+import Header from './NavHeader.tsx'
+import theme from '../../theme.tsx'
 
 const Layout: React.FC = () => {
+  const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
+
   return (
     <Box
       sx={{
@@ -23,13 +26,16 @@ const Layout: React.FC = () => {
           flexGrow: 1,
           overflow: 'auto',
           padding: 0,
+          overflowX: 'hidden',
         }}
       >
         <Outlet />
       </Container>
-      <Box component="footer" sx={{ py: 6 }} marginTop={5}>
-        <Footer />
-      </Box>
+      {isMobile ? (
+        <Box component="footer" sx={{ py: 6 }} marginTop={5}>
+          <Footer />
+        </Box>
+      ) : null}
     </Box>
   )
 }

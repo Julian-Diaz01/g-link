@@ -11,6 +11,7 @@ import {
 } from '@mui/material'
 import OpenInNewIcon from '@mui/icons-material/OpenInNew'
 import LinkIcon from '@mui/icons-material/Link'
+import { motion } from 'framer-motion'
 
 interface ProjectCardProps {
   monthYearRange: string
@@ -114,62 +115,76 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
     event.stopPropagation()
   }
 
+  const variants = {
+    hidden: { opacity: 0, x: 50 },
+    visible: { opacity: 1, x: 0 },
+  }
   return (
-    <Card variant="outlined" sx={styles.card} onClick={handleCardClick}>
-      <Grid container>
-        <Grid item xs={12} md={3} sx={styles.gridLeft}>
-          <Typography sx={styles.typographyDates}>{monthYearRange}</Typography>
-        </Grid>
-        <Grid item xs={12} md={9} component="div">
-          <CardContent>
-            <Link
-              href={cardLink ?? '#'}
-              target="_blank"
-              rel="noopener noreferrer"
-              underline="none"
-            >
-              <Typography
-                gutterBottom
-                variant="h6"
-                color="text.primary"
-                component="div"
-                sx={styles.typographyTitle}
-              >
-                {title} · {subTitle}
-                <OpenInNewIcon fontSize="small" sx={styles.titleIcon} />
-              </Typography>
-            </Link>
-            <Typography variant="body2" sx={styles.typographyBody}>
-              {description}
+    <motion.div
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true }}
+      transition={{ duration: 0.5 }}
+      variants={variants}
+    >
+      <Card variant="outlined" sx={styles.card} onClick={handleCardClick}>
+        <Grid container>
+          <Grid item xs={12} md={3} sx={styles.gridLeft}>
+            <Typography sx={styles.typographyDates}>
+              {monthYearRange}
             </Typography>
-            <Box sx={styles.linkBox}>
-              {links?.map((link, index) => (
+          </Grid>
+          <Grid item xs={12} md={9} component="div">
+            <CardContent>
+              <Link
+                href={cardLink ?? '#'}
+                target="_blank"
+                rel="noopener noreferrer"
+                underline="none"
+              >
                 <Typography
-                  key={index}
+                  gutterBottom
+                  variant="h6"
                   color="text.primary"
-                  sx={styles.typographyLink}
+                  component="div"
+                  sx={styles.typographyTitle}
                 >
-                  <LinkIcon sx={styles.linkIcon} />
-                  <Link
-                    color="text.primary"
-                    href={link.url}
-                    onClick={preventPropagation}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    underline="none"
-                  >
-                    {link.title}
-                  </Link>
+                  {title} · {subTitle}
+                  <OpenInNewIcon fontSize="small" sx={styles.titleIcon} />
                 </Typography>
+              </Link>
+              <Typography variant="body2" sx={styles.typographyBody}>
+                {description}
+              </Typography>
+              <Box sx={styles.linkBox}>
+                {links?.map((link, index) => (
+                  <Typography
+                    key={index}
+                    color="text.primary"
+                    sx={styles.typographyLink}
+                  >
+                    <LinkIcon sx={styles.linkIcon} />
+                    <Link
+                      color="text.primary"
+                      href={link.url}
+                      onClick={preventPropagation}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      underline="none"
+                    >
+                      {link.title}
+                    </Link>
+                  </Typography>
+                ))}
+              </Box>
+              {chips.map((chip, index) => (
+                <Chip key={index} label={chip} sx={styles.chip} />
               ))}
-            </Box>
-            {chips.map((chip, index) => (
-              <Chip key={index} label={chip} sx={styles.chip} />
-            ))}
-          </CardContent>
+            </CardContent>
+          </Grid>
         </Grid>
-      </Grid>
-    </Card>
+      </Card>
+    </motion.div>
   )
 }
 
