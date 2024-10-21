@@ -14,6 +14,23 @@ interface Jobs {
 
 const jobs: Jobs[] = [
   {
+    monthYearRange: 'Mar 2024 - Sep 2024',
+    title: 'Founding Engineer / Technical Advisor',
+    subTitle: 'EduEnvire',
+    cardLink: 'https://eduenvire.com/',
+    description:
+      'developed a check-in system that allowed students to register their attendance while giving teachers real-time insights into device usage without restricting access. This tool improved classroom management by promoting responsible device use. I led the design and development, working with the backend team to ensure seamless integration and a user-friendly interface, while creating a scalable solution for future needs.',
+    chips: [
+      'React TS',
+      'React Native',
+      'HTML',
+      'CSS',
+      'CI/DC',
+      'Azure AD',
+      'Figma',
+    ],
+  },
+  {
     monthYearRange: 'Jun 2020 - Dec 2023',
     title: 'Frontend Engineer',
     subTitle: 'iomoto',
