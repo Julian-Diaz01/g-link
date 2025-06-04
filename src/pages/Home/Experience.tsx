@@ -14,7 +14,7 @@ interface Jobs {
 
 const jobs: Jobs[] = [
   {
-    monthYearRange: 'Mar 2024 - Sep 2024',
+    monthYearRange: 'Mar 2024 - Dec 2024',
     title: 'Founding Engineer / Technical Advisor',
     subTitle: 'EduEnvire',
     cardLink: 'https://eduenvire.com/',
