@@ -3,19 +3,28 @@ import { Box, Typography } from '@mui/material'
 
 const HomeMenu: React.FC = () => {
   const [activeAnchor, setActiveAnchor] = useState<string>('')
+
   useEffect(() => {
     const handleScroll = () => {
       const scrollPosition = window.scrollY
-      const aboutSection = document.getElementById('#home')
+      const homeSection = document.getElementById('#home')
       const experienceSection = document.getElementById('#experience')
+      const languagesSection = document.getElementById('#languages')
 
-      if (aboutSection && experienceSection) {
+      if (homeSection && experienceSection && languagesSection) {
+        //const homeOffset = homeSection.offsetTop
         const experienceOffset = experienceSection.offsetTop
+        const languagesOffset = languagesSection.offsetTop
 
         if (scrollPosition < experienceOffset) {
           setActiveAnchor('#home')
-        } else {
+        } else if (
+          scrollPosition >= experienceOffset &&
+          scrollPosition < languagesOffset
+        ) {
           setActiveAnchor('#experience')
+        } else {
+          setActiveAnchor('#languages')
         }
       }
     }
@@ -27,13 +36,8 @@ const HomeMenu: React.FC = () => {
 
   const handleScroll = (anchor: string) => () => {
     const anchorElement = document.getElementById(anchor)
-    console.log(anchorElement)
     if (anchorElement) {
-      const scrollPosition =
-        anchor === 'experience'
-          ? anchorElement.offsetTop - 10
-          : anchorElement.offsetTop
-      window.scrollTo({ top: scrollPosition, behavior: 'smooth' })
+      window.scrollTo({ top: anchorElement.offsetTop, behavior: 'smooth' })
     }
   }
 
@@ -57,12 +61,25 @@ const HomeMenu: React.FC = () => {
         sx={{
           cursor: 'pointer',
           fontSize: activeAnchor === '#experience' ? '1.2rem' : '1rem',
+          mr: 2,
         }}
         onClick={handleScroll('#experience')}
       >
         Experience
       </Typography>
+      <Typography
+        variant="body1"
+        color={activeAnchor === '#languages' ? 'secondary' : 'inherit'}
+        sx={{
+          cursor: 'pointer',
+          fontSize: activeAnchor === '#languages' ? '1.2rem' : '1rem',
+        }}
+        onClick={handleScroll('#languages')}
+      >
+        Languages
+      </Typography>
     </Box>
   )
 }
+
 export default HomeMenu

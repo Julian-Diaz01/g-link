@@ -6,6 +6,7 @@ import Description from './Description.tsx'
 import Experience from './Experience.tsx'
 import HomeMenu from './HomeMenu.tsx'
 import Footer from '../Wireframe/Footer.tsx'
+import Languages from './Languages.tsx'
 
 const Home: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
@@ -41,6 +42,7 @@ const Home: React.FC = () => {
             <div id="#experidence" />
           </Box>
           <Experience />
+          <Languages />
         </Grid>
       </Grid>
     </>

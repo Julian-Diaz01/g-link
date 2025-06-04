@@ -14,10 +14,10 @@ import LinkIcon from '@mui/icons-material/Link'
 import { motion } from 'framer-motion'
 
 interface ProjectCardProps {
-  monthYearRange: string
+  monthYearRange?: string
   title: string
   subTitle: string
-  description: string
+  description?: string
   chips: string[]
   links?: { title: string; url: string }[]
   cardLink?: string
@@ -114,7 +114,6 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
   ) => {
     event.stopPropagation()
   }
-
   const variants = {
     hidden: { opacity: 0, x: 50 },
     visible: { opacity: 1, x: 0 },
@@ -136,12 +135,25 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
           </Grid>
           <Grid item xs={12} md={9} component="div">
             <CardContent>
-              <Link
-                href={cardLink ?? '#'}
-                target="_blank"
-                rel="noopener noreferrer"
-                underline="none"
-              >
+              {cardLink ? (
+                <Link
+                  href={cardLink}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  underline="none"
+                >
+                  <Typography
+                    gutterBottom
+                    variant="h6"
+                    color="text.primary"
+                    component="div"
+                    sx={styles.typographyTitle}
+                  >
+                    {title} · {subTitle}
+                    <OpenInNewIcon fontSize="small" sx={styles.titleIcon} />
+                  </Typography>
+                </Link>
+              ) : (
                 <Typography
                   gutterBottom
                   variant="h6"
@@ -150,9 +162,8 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                   sx={styles.typographyTitle}
                 >
                   {title} · {subTitle}
-                  <OpenInNewIcon fontSize="small" sx={styles.titleIcon} />
                 </Typography>
-              </Link>
+              )}
               <Typography variant="body2" sx={styles.typographyBody}>
                 {description}
               </Typography>
