@@ -1,6 +1,7 @@
 import React from 'react'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import ProjectCard from '../../components/ProjectCard.tsx'
+import theme from '../../theme.tsx'
 
 interface Jobs {
   monthYearRange: string
@@ -74,30 +75,20 @@ const jobs: Jobs[] = [
       'Contributed to diverse client assignments, including the development of an auction house app using React JavaScript. Gained backend expertise by creating REST endpoints in Scala, ensuring quality with endpoint-specific unit tests.',
     chips: ['React', 'Jest', 'Scala'],
   },
-  {
-    monthYearRange: 'Jan 2018 - Jul 2019',
-    title: 'M.Sc. Creative Technologies',
-    subTitle: 'Leeds Beckett University',
-    cardLink: 'https://www.leedsbeckett.ac.uk/courses/creative-technology-msc/',
-    description:
-      'Developed an AR and AI-based navigation system for indoor environments, using snatural markers for location tracking. The system guides users through structures with real-time instructions.',
-    chips: ['C#', 'JavaScript', 'Unity', 'AI'],
-    links: [
-      {
-        title: 'Git',
-        url: 'https://github.com/Julian-Diaz01/AR-navigation-App',
-      },
-      {
-        title: 'YouTube',
-        url: 'https://www.youtube.com/watch?v=1hH-E6ymdm0',
-      },
-    ],
-  },
 ]
 
 const Experience: React.FC = () => {
+  const styles = {
+    titleStyle: {
+      width: 'fit-content',
+      fontSize: '1.2rem',
+      color: theme.palette.secondary.main,
+      mb: 2,
+    },
+  }
   return (
     <Box sx={{ mt: 5, mb: 5 }} id="#experience">
+      <Typography sx={styles.titleStyle}>Experience</Typography>
       {jobs.map((job, index) => (
         <Box key={index}>
           <ProjectCard

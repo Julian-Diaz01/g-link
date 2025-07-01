@@ -114,7 +114,7 @@ const MobileDrawerList: React.FC<{
   }
 
   const openResumeInNewTab = () => {
-    window.open('CV.pdf', '_blank')
+    window.open('julian_diaz_cv.pdf', '_blank')
     toggleMobileDrawer(false)()
   }
 

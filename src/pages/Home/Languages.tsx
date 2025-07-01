@@ -1,6 +1,7 @@
 import React from 'react'
-import { Box } from '@mui/material'
+import { Box, Typography } from '@mui/material'
 import ProjectCard from '../../components/ProjectCard.tsx'
+import theme from '../../theme.tsx'
 
 interface Language {
   name: string
@@ -27,8 +28,17 @@ const languages: Language[] = [
 ]
 
 const Languages: React.FC = () => {
+  const styles = {
+    titleStyle: {
+      width: 'fit-content',
+      fontSize: '1.2rem',
+      color: theme.palette.secondary.main,
+      mb: 2,
+    },
+  }
   return (
-    <Box sx={{ mt: 5, mb: 5 }} id="#languages">
+    <Box sx={{ mt: 5, mb: 5, pb: 15 }} id="#languages">
+      <Typography sx={styles.titleStyle}>Languages</Typography>
       {languages.map((lang, index) => (
         <Box key={index}>
           <ProjectCard
