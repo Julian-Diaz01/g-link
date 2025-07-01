@@ -35,7 +35,7 @@ const education: Education[] = [
   },
   {
     monthYearRange: 'Jul 2011 - Jun 2017',
-    title: 'Ing. Multimedia Engineering',
+    title: 'B.Eng. Multimedia Engineering',
     subTitle: 'Universidad Militar Nueva Granada (Bogota, Col)',
     cardLink:
       'https://www.umng.edu.co/programas/pregrados/ingenieria-multimedia',
