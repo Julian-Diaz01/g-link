@@ -2,6 +2,7 @@ import React from 'react'
 import { Box, Typography } from '@mui/material'
 import ProjectCard from '../../components/ProjectCard.tsx'
 import theme from '../../theme.tsx'
+import languagesData from '../../data/languages.json'
 
 interface Language {
   name: string
@@ -9,23 +10,7 @@ interface Language {
   chips: string[]
 }
 
-const languages: Language[] = [
-  {
-    name: 'Spanish',
-    description: 'Native',
-    chips: ['Speaking', 'Writing', 'Reading', 'Culture'],
-  },
-  {
-    name: 'English',
-    description: 'Fluent',
-    chips: ['Speaking', 'Writing', 'Reading', 'Technical Communication'],
-  },
-  {
-    name: 'German',
-    description: 'B1 certified',
-    chips: ['Speaking', 'Reading', 'Writing'],
-  },
-]
+const languages: Language[] = languagesData
 
 const Languages: React.FC = () => {
   const styles = {

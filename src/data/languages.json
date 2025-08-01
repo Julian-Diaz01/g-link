@@ -1,0 +1,17 @@
+[
+  {
+    "name": "Spanish",
+    "description": "Native",
+    "chips": ["Speaking", "Writing", "Reading", "Culture"]
+  },
+  {
+    "name": "English",
+    "description": "Fluent",
+    "chips": ["Speaking", "Writing", "Reading", "Technical Communication"]
+  },
+  {
+    "name": "German",
+    "description": "B1 certified",
+    "chips": ["Speaking", "Reading", "Writing"]
+  }
+]
