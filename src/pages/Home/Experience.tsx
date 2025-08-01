@@ -15,12 +15,33 @@ interface Jobs {
 
 const jobs: Jobs[] = [
   {
+    monthYearRange: 'May 2025 – Present',
+    title: 'Co-Founder',
+    subTitle: 'Konnektaro',
+    cardLink: 'https://konnektaro.com/',
+    description:
+      'Developed a mobile-first progressive web app for real-time learning, and networking sessions using React, Next.js, and TypeScript.',
+    chips: [
+      'React TS',
+      'Next JS',
+      'Express',
+      'Node JS',
+      'HTML',
+      'Tailwind CSS',
+      'CSS',
+      'CI/DC',
+      'Firebase',
+      'MongoDB',
+      'Figma',
+    ],
+  },
+  {
     monthYearRange: 'Mar 2024 - Dec 2024',
     title: 'Founding Engineer / Technical Advisor',
     subTitle: 'EduEnvire',
     cardLink: 'https://eduenvire.com/',
     description:
-      'developed a check-in system that allowed students to register their attendance while giving teachers real-time insights into device usage without restricting access. This tool improved classroom management by promoting responsible device use. I led the design and development, working with the backend team to ensure seamless integration and a user-friendly interface, while creating a scalable solution for future needs.',
+      'Developed a check-in system that allowed students to register their attendance while giving teachers real-time insights into device usage without restricting access. This tool improved classroom management by promoting responsible device use. I led the design and development, working with the backend team to ensure seamless integration and a user-friendly interface, while creating a scalable solution for future needs.',
     chips: [
       'React TS',
       'React Native',
