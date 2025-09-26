@@ -1,10 +1,10 @@
 import React from 'react'
-import JobApplication from '../../components/JobApplication.tsx'
+import LocalJobChat from '../../components/LocalJobChat'
 
 const Projects: React.FC = () => {
   return (
     <div>
-      <JobApplication />
+      <LocalJobChat />
     </div>
   )
 }
