@@ -18,8 +18,6 @@ export const LocalJobChat: React.FC<LocalJobChatProps> = ({
     startChat,
     sendMessage,
     loadChatSession,
-    generatePdf,
-    downloadPdf,
     getAllSessions,
     deleteSession,
     archiveSession,
@@ -141,52 +139,6 @@ export const LocalJobChat: React.FC<LocalJobChatProps> = ({
       setCoverLetter('')
     } catch (err) {
       console.error('Failed to save cover letter:', err)
-    }
-  }
-
-  // Handle generating PDF
-  const handleGeneratePdf = async () => {
-    if (!currentSession) return
-
-    // Find the saved cover letter from messages
-    const coverLetterMessage = currentSession.messages?.find(
-      (msg) =>
-        msg.role === 'assistant' &&
-        msg.message.includes('Cover letter finalized'),
-    )
-
-    if (!coverLetterMessage) {
-      alert('Please save a cover letter first.')
-      return
-    }
-
-    // Extract the cover letter from the message
-    // The cover letter should be in the message content before "Cover letter finalized"
-    const messageContent = coverLetterMessage.message
-    const coverLetterText = messageContent
-      .replace('\n\nCover letter finalized and saved.', '')
-      .trim()
-
-    if (!coverLetterText) {
-      alert('No cover letter content found.')
-      return
-    }
-
-    try {
-      await generatePdf(currentSession, coverLetterText)
-    } catch (err) {
-      console.error('Failed to generate PDF:', err)
-    }
-  }
-
-  // Handle downloading PDF
-  const handleDownloadPdf = async () => {
-    if (!currentSession) return
-
-    try {
-      await downloadPdf(currentSession.session_id)
-    } catch (err) {
-      console.error('Failed to download PDF:', err)
     }
   }
 
@@ -533,23 +485,6 @@ export const LocalJobChat: React.FC<LocalJobChatProps> = ({
                     >
                       {currentSession.status}
                     </span>
-                    {currentSession.status === 'archived' && (
-                      <div className="flex space-x-2">
-                        <button
-                          onClick={handleGeneratePdf}
-                          disabled={isLoading}
-                          className="px-3 py-1 bg-blue-600 text-white rounded text-sm hover:bg-blue-700 disabled:opacity-50"
-                        >
-                          Generate PDF
-                        </button>
-                        <button
-                          onClick={handleDownloadPdf}
-                          className="px-3 py-1 bg-green-600 text-white rounded text-sm hover:bg-green-700"
-                        >
-                          Download PDF
-                        </button>
-                      </div>
-                    )}
                     <button
                       onClick={clearCurrentSession}
                       className="text-gray-400 hover:text-gray-300"

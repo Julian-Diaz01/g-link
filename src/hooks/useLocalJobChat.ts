@@ -220,70 +220,6 @@ export const useLocalJobChat = (baseUrl: string = 'http://localhost:1010') => {
     [loadSessionsFromStorage],
   )
 
-  // Generate PDF
-  const generatePdf = useCallback(
-    async (
-      session: LocalChatSession,
-      coverLetter: string,
-    ): Promise<GeneratePdfResponse> => {
-      setIsLoading(true)
-      setError(null)
-
-      try {
-        const result = await apiCall<GeneratePdfResponse>(
-          '/chat/generate-pdf',
-          {
-            method: 'POST',
-            body: JSON.stringify({ session, coverLetter }),
-          },
-        )
-
-        return result
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : 'Failed to generate PDF'
-        setError(errorMessage)
-        throw err
-      } finally {
-        setIsLoading(false)
-      }
-    },
-    [apiCall],
-  )
-
-  // Download PDF
-  const downloadPdf = useCallback(
-    async (sessionId: string): Promise<void> => {
-      try {
-        const response = await fetch(
-          `${baseUrl}/chat/download-pdf/${sessionId}`,
-        )
-
-        if (!response.ok) {
-          const errorData = await response.json().catch(() => ({}))
-          throw new Error(errorData.error || 'Failed to download PDF')
-        }
-
-        // Create blob and download
-        const blob = await response.blob()
-        const url = window.URL.createObjectURL(blob)
-        const a = document.createElement('a')
-        a.href = url
-        a.download = `cover-letter-${sessionId}.pdf`
-        document.body.appendChild(a)
-        a.click()
-        window.URL.revokeObjectURL(url)
-        document.body.removeChild(a)
-      } catch (err) {
-        const errorMessage =
-          err instanceof Error ? err.message : 'Failed to download PDF'
-        setError(errorMessage)
-        throw err
-      }
-    },
-    [baseUrl],
-  )
-
   // Get all sessions from localStorage
   const getAllSessions = useCallback((): LocalChatSession[] => {
     const sessions = loadSessionsFromStorage()
@@ -368,8 +304,6 @@ export const useLocalJobChat = (baseUrl: string = 'http://localhost:1010') => {
     startChat,
     sendMessage,
     loadChatSession,
-    generatePdf,
-    downloadPdf,
     getAllSessions,
     deleteSession,
     archiveSession,
