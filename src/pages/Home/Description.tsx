@@ -26,14 +26,15 @@ const Description: React.FC = () => {
           'Multimedia Engineering',
         ]}
       >
-        I am an accomplished Frontend Engineer with a robust background in web
-        and mobile application development, having spearheaded significant
-        projects in both B2B and B2C domains. My journey in technology spans
-        from conceptualization to deployment, with a steadfast commitment to
-        crafting user-centric, streamlined solutions. Holding a Master's in
-        Creative Technologies and a Bachelor's in Multimedia Engineering, I
-        wield a diverse arsenal of technical and design tools, showcasing a
-        versatile skill set that resonates across the tech industry.
+        I’m a Software Developer with a strong background in building web and
+        mobile applications, experienced in both B2B and B2C projects. My work
+        spans the full development cycle — from concept to deployment — with a
+        focus on creating simple, user-centered solutions that are technically
+        sound and visually clear. I hold a Master’s in Creative Technologies and
+        a Bachelor’s in Multimedia Engineering, which gives me a unique mix of
+        technical depth and design thinking. This combination allows me to
+        bridge the gap between functionality and user experience, and to adapt
+        quickly across different stages of a product’s development.
       </TextHighlighter>
       <Box sx={{ height: 30 }} />
       <Typography
