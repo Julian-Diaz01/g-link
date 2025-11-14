@@ -29,7 +29,23 @@ const firebaseConfig = {
 const router = createBrowserRouter(
   createRoutesFromElements(
     <>
-      <Route path="/" element={<PageStructure />}>
+      {/* Version2 is now the default */}
+      <Route
+        path="/"
+        element={
+          <Suspense
+            fallback={
+              <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
+                <div className="text-lg">Loading Portfolio...</div>
+              </div>
+            }
+          >
+            <PortfolioDesign />
+          </Suspense>
+        }
+      />
+      {/* Old version accessible at /home */}
+      <Route path="/home" element={<PageStructure />}>
         <Route index element={<Home />} />
         <Route
           path="projects/*"
@@ -47,6 +63,7 @@ const router = createBrowserRouter(
         />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
+      {/* Keep /version2 as alias for backwards compatibility */}
       <Route
         path="/version2"
         element={
@@ -61,6 +78,7 @@ const router = createBrowserRouter(
           </Suspense>
         }
       />
+      <Route path="*" element={<NotFoundPage />} />
     </>,
   ),
 )

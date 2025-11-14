@@ -30,10 +30,10 @@ const Header: React.FC = () => {
     setValue(newValue)
     switch (newValue) {
       case 'home':
-        navigate('/')
+        navigate('/home')
         break
       case 'projects':
-        navigate('/projects')
+        navigate('/home/projects')
         break
       default:
         break
@@ -66,7 +66,7 @@ const Header: React.FC = () => {
 
 const HexagonJLink: React.FC = () => (
   <Box>
-    <Link to="/">
+    <Link to="/home">
       <IconJ borderColor="secondary" borderThickness={3} />
     </Link>
   </Box>
@@ -120,12 +120,12 @@ const MobileDrawerList: React.FC<{
 
   return (
     <List sx={{ width: '100%', padding: '16px' }}>
-      <ListItemButton onClick={navigateAndCloseDrawer('/')}>
+      <ListItemButton onClick={navigateAndCloseDrawer('/home')}>
         <ListItemText>
           <Typography variant="h5">About</Typography>
         </ListItemText>
       </ListItemButton>
-      <ListItemButton onClick={navigateAndCloseDrawer('/projects')}>
+      <ListItemButton onClick={navigateAndCloseDrawer('/home/projects')}>
         <ListItemText>
           <Typography variant="h5">Projects</Typography>
         </ListItemText>
@@ -133,6 +133,11 @@ const MobileDrawerList: React.FC<{
       <ListItemButton onClick={openResumeInNewTab}>
         <ListItemText>
           <Typography variant="h5">Resume</Typography>
+        </ListItemText>
+      </ListItemButton>
+      <ListItemButton onClick={navigateAndCloseDrawer('/')}>
+        <ListItemText>
+          <Typography variant="h5">v2</Typography>
         </ListItemText>
       </ListItemButton>
     </List>
@@ -144,6 +149,7 @@ const DesktopTabs: React.FC<{
   handleChange: (event: React.SyntheticEvent, newValue: string) => void
 }> = ({ value, handleChange }) => {
   const theme = useTheme()
+  const navigate = useNavigate()
   return (
     <Tabs
       value={value}
@@ -155,15 +161,32 @@ const DesktopTabs: React.FC<{
         minHeight: 30,
       }}
     >
-      {/*  <Tab disableRipple value="home" label="About" component={Link} to="/" />
+      {/*  <Tab disableRipple value="home" label="About" component={Link} to="/home" />
       <Tab
         disableRipple
         value="projects"
         label="Projects"
         component={Link}
-        to="/projects"
+        to="/home/projects"
       />*/}
       <OpenPdfButton pdfUrl="julian_diaz_cv.pdf" />
+      <Box
+        component="a"
+        onClick={() => navigate('/')}
+        sx={{
+          cursor: 'pointer',
+          color: theme.palette.text.primary,
+          padding: '6px 16px',
+          fontSize: '0.875rem',
+          fontWeight: 500,
+          textTransform: 'uppercase',
+          '&:hover': {
+            color: theme.palette.secondary.main,
+          },
+        }}
+      >
+        v2
+      </Box>
     </Tabs>
   )
 }

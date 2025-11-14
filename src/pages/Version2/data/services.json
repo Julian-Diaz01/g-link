@@ -3,18 +3,26 @@
     "icon": "Code",
     "title": "Frontend Development",
     "description": "Building responsive, interactive UIs with React, Vue, and modern frameworks. Pixel-perfect implementations with smooth animations.",
-    "chips": ["React", "TypeScript", "Tailwind"]
+    "chips": [
+      "React",
+      "TypeScript",
+      "Tailwind",
+      "Next.js",
+      "React Native",
+      "HTML",
+      "CSS"
+    ]
   },
   {
     "icon": "Briefcase",
     "title": "Backend Development",
     "description": "Scalable APIs and server architectures. Database design, authentication, and cloud deployment solutions.",
-    "chips": ["Node.js", "PostgreSQL", "AWS"]
+    "chips": ["Node.js", "MongoDB", "Firebase", "Express", "Azure AD"]
   },
   {
     "icon": "User",
     "title": "UI/UX Design",
     "description": "User-centered design with focus on accessibility and performance. Wireframing, prototyping, and visual design.",
-    "chips": ["Figma", "Design Systems", "A11y"]
+    "chips": ["Figma", "Illustrator", "Photoshop"]
   }
 ]

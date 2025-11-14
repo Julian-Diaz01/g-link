@@ -33,7 +33,7 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           <Link
-            to="/version2"
+            to="/"
             className="flex items-center gap-2"
             onClick={closeMobileMenu}
           >
@@ -68,6 +68,13 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
             >
               CV
             </a>
+            <Link
+              to="/home"
+              className="text-slate-600 text-sm dark:text-slate-300
+               hover:text-orange-500 dark:hover:text-orange-400 transition "
+            >
+              v1
+            </Link>
             <DarkModeToggle />
           </div>
 
@@ -115,6 +122,13 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
               >
                 CV
               </a>
+              <Link
+                to="/home"
+                className="text-slate-600 dark:text-slate-300 py-2"
+                onClick={closeMobileMenu}
+              >
+                v1
+              </Link>
             </div>
           </div>
         )}

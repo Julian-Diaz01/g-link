@@ -27,8 +27,7 @@ const Services: React.FC<ServicesProps> = ({ services }) => {
           </h2>
           <p className="text-slate-600 dark:text-slate-400 text-base sm:text-lg max-w-2xl">
             Crafting digital solutions with expertise in modern web
-            technologies. From concept to deployment, I bring your vision to
-            life.
+            technologies. From concept to deployment, I bring vision to life.
           </p>
         </div>
 

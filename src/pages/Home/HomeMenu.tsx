@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { Box, Typography, useTheme } from '@mui/material'
+import { Link } from 'react-router-dom'
 
 const HomeMenu: React.FC = () => {
   const [activeAnchor, setActiveAnchor] = useState<string>('')
@@ -87,6 +88,34 @@ const HomeMenu: React.FC = () => {
       >
         Languages
       </Typography>
+      <Link
+        to="/"
+        style={{
+          textDecoration: 'none',
+          color: theme.palette.text.primary,
+          display: 'block',
+          marginTop: theme.spacing(2),
+          fontSize: '1rem',
+          transition: 'color 0.3s',
+        }}
+        onMouseEnter={(e) => {
+          e.currentTarget.style.color = theme.palette.secondary.main
+        }}
+        onMouseLeave={(e) => {
+          e.currentTarget.style.color = theme.palette.text.primary
+        }}
+      >
+        <Typography
+          sx={{
+            cursor: 'pointer',
+            '&:hover': {
+              color: theme.palette.secondary.main,
+            },
+          }}
+        >
+          v2
+        </Typography>
+      </Link>
     </Box>
   )
 }

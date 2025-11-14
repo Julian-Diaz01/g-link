@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState, useCallback } from 'react'
 import {
   Github,
   Linkedin,
@@ -14,6 +14,25 @@ interface ContactProps {
   profile: Profile
 }
 
+// Email obfuscation utilities
+const encodeEmail = (email: string): string => {
+  return btoa(email).split('').reverse().join('')
+}
+
+const decodeEmail = (encoded: string): string => {
+  return atob(encoded.split('').reverse().join(''))
+}
+
+const obfuscateEmailDisplay = (email: string): string => {
+  const [localPart, domain] = email.split('@')
+  if (!domain) return email
+  const maskedLocal =
+    localPart.length > 2
+      ? `${localPart[0]}${'*'.repeat(localPart.length - 2)}${localPart[localPart.length - 1]}`
+      : localPart
+  return `${maskedLocal}@${domain}`
+}
+
 const iconMap: Record<string, LucideIcon> = {
   Github,
   Linkedin,
@@ -21,6 +40,28 @@ const iconMap: Record<string, LucideIcon> = {
 }
 
 const Contact: React.FC<ContactProps> = ({ profile }) => {
+  const [showFullEmail, setShowFullEmail] = useState(false)
+
+  // Encode email for storage (not directly in HTML)
+  const encodedEmail = encodeEmail(profile.email)
+
+  const handleEmailClick = useCallback(
+    (e: React.MouseEvent<HTMLAnchorElement>) => {
+      e.preventDefault()
+      const decodedEmail = decodeEmail(encodedEmail)
+      window.location.href = `mailto:${decodedEmail}`
+    },
+    [encodedEmail],
+  )
+
+  const handleEmailDisplayClick = useCallback(() => {
+    setShowFullEmail(true)
+  }, [])
+
+  const displayedEmail = showFullEmail
+    ? profile.email
+    : obfuscateEmailDisplay(profile.email)
+
   return (
     <section
       id="contact"
@@ -36,7 +77,8 @@ const Contact: React.FC<ContactProps> = ({ profile }) => {
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8">
           <a
-            href={`mailto:${profile.email}`}
+            href="#"
+            onClick={handleEmailClick}
             className="bg-white dark:bg-slate-900 text-orange-600 dark:text-orange-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:scale-105 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
           >
             <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
@@ -54,11 +96,13 @@ const Contact: React.FC<ContactProps> = ({ profile }) => {
 
         <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 justify-center mb-6 sm:mb-8 text-xs sm:text-sm">
           <a
-            href={`mailto:${profile.email}`}
-            className="flex items-center justify-center gap-2 hover:text-orange-100 dark:hover:text-orange-300 transition break-all"
+            href="#"
+            onClick={handleEmailClick}
+            className="flex items-center justify-center gap-2 hover:text-orange-100 dark:hover:text-orange-300 transition break-all cursor-pointer"
+            onMouseEnter={handleEmailDisplayClick}
           >
             <Mail className="w-4 h-4 flex-shrink-0" />
-            <span className="break-all">{profile.email}</span>
+            <span className="break-all">{displayedEmail}</span>
           </a>
           <a
             href={`tel:${profile.phone}`}

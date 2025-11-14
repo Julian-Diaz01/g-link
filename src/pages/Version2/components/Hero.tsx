@@ -93,14 +93,7 @@ const Hero: React.FC<HeroProps> = ({ profile }) => {
                 </p>
               </div>
               <div className="w-px h-8 sm:h-12 bg-slate-200 dark:bg-slate-700" />
-              <div>
-                <p className="text-2xl sm:text-3xl font-bold text-orange-500 dark:text-orange-400">
-                  {profile.projectsCompleted}+
-                </p>
-                <p className="text-xs sm:text-sm text-slate-500 dark:text-slate-400">
-                  Projects Completed
-                </p>
-              </div>
+              <div></div>
             </div>
 
             {/* CTA Buttons */}
