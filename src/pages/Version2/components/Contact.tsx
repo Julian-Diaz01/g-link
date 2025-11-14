@@ -1,0 +1,104 @@
+import React from 'react'
+import {
+  Github,
+  Linkedin,
+  Twitter,
+  Mail,
+  Phone,
+  Globe,
+  LucideIcon,
+} from 'lucide-react'
+import { Profile } from '../types'
+
+interface ContactProps {
+  profile: Profile
+}
+
+const iconMap: Record<string, LucideIcon> = {
+  Github,
+  Linkedin,
+  Twitter,
+}
+
+const Contact: React.FC<ContactProps> = ({ profile }) => {
+  return (
+    <section
+      id="contact"
+      className="py-12 sm:py-16 md:py-20 bg-gradient-to-br from-orange-500 to-orange-600 dark:from-orange-600 dark:to-orange-800 transition-colors duration-300"
+    >
+      <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-white dark:text-slate-100">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4 sm:mb-6">
+          Let's Work Together
+        </h2>
+        <p className="text-lg sm:text-xl mb-6 sm:mb-8 text-orange-100 dark:text-orange-200">
+          Have a project in mind? Let's create something amazing together.
+        </p>
+
+        <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center mb-6 sm:mb-8">
+          <a
+            href={`mailto:${profile.email}`}
+            className="bg-white dark:bg-slate-900 text-orange-600 dark:text-orange-400 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:scale-105 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
+          >
+            <Mail className="w-4 h-4 sm:w-5 sm:h-5" />
+            Get In Touch
+          </a>
+          <a
+            href="/julian_diaz_cv.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="border-2 border-white dark:border-slate-200 text-white dark:text-slate-100 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-white/10 dark:hover:bg-slate-800/30 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
+          >
+            View Resume
+          </a>
+        </div>
+
+        <div className="flex flex-col sm:flex-row sm:flex-wrap gap-3 sm:gap-4 justify-center mb-6 sm:mb-8 text-xs sm:text-sm">
+          <a
+            href={`mailto:${profile.email}`}
+            className="flex items-center justify-center gap-2 hover:text-orange-100 dark:hover:text-orange-300 transition break-all"
+          >
+            <Mail className="w-4 h-4 flex-shrink-0" />
+            <span className="break-all">{profile.email}</span>
+          </a>
+          <a
+            href={`tel:${profile.phone}`}
+            className="flex items-center justify-center gap-2 hover:text-orange-100 dark:hover:text-orange-300 transition"
+          >
+            <Phone className="w-4 h-4" />
+            {profile.phone}
+          </a>
+          <a
+            href={profile.website}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 hover:text-orange-100 dark:hover:text-orange-300 transition"
+          >
+            <Globe className="w-4 h-4" />
+            Website
+          </a>
+        </div>
+
+        <div className="flex gap-4 sm:gap-6 justify-center mt-8 sm:mt-12">
+          {profile.socialLinks.map((social, index) => {
+            const IconComponent = iconMap[social.icon] || Github
+
+            return (
+              <a
+                key={index}
+                href={social.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="w-12 h-12 bg-white/20 dark:bg-slate-800/50 rounded-full flex items-center justify-center hover:bg-white/30 dark:hover:bg-slate-700/60 transition"
+                aria-label={social.name}
+              >
+                <IconComponent className="w-5 h-5" />
+              </a>
+            )
+          })}
+        </div>
+      </div>
+    </section>
+  )
+}
+
+export default Contact

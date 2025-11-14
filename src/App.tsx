@@ -11,6 +11,7 @@ import { getAnalytics } from 'firebase/analytics'
 import PageStructure from './pages/Wireframe/Page.tsx'
 import InteractiveBackground from './components/InteractiveBackground.tsx'
 import NotFoundPage from './pages/NotFoundPage.tsx'
+import PortfolioDesign from './pages/Version2/version2'
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -24,11 +25,14 @@ const firebaseConfig = {
 
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route path="/" element={<PageStructure />}>
-      <Route index element={<Home />} />
-      <Route path="projects/*" element={<Projects />} />
-      <Route path="*" element={<NotFoundPage />} />
-    </Route>,
+    <>
+      <Route path="/" element={<PageStructure />}>
+        <Route index element={<Home />} />
+        <Route path="projects/*" element={<Projects />} />
+        <Route path="*" element={<NotFoundPage />} />
+      </Route>
+      <Route path="/version2" element={<PortfolioDesign />} />
+    </>,
   ),
 )
 

@@ -1,0 +1,25 @@
+{
+  "firstName": "Julian",
+  "lastName": "Diaz",
+  "title": "Full-Stack Developer",
+  "greeting": "Hallo! 👋",
+  "bio": "Building exceptional web experiences with modern technologies. Transforming ideas into elegant, performant applications.",
+  "location": "Berlin, Germany",
+  "email": "judadi1994@gmail.com",
+  "phone": "+49 176 34650070",
+  "website": "https://juliandiaz.web.app/",
+  "yearsOfExperience": 5,
+  "projectsCompleted": 50,
+  "socialLinks": [
+    {
+      "name": "Github",
+      "url": "https://github.com/Julian-Diaz01",
+      "icon": "Github"
+    },
+    {
+      "name": "LinkedIn",
+      "url": "https://www.linkedin.com/in/julian-diaz-01/",
+      "icon": "Linkedin"
+    }
+  ]
+}
