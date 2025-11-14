@@ -1,3 +1,14 @@
 @import 'tailwindcss';
 
 @variant dark (&:where(.dark, .dark *));
+
+/* Prevent skeleton flash on load */
+.react-loading-skeleton {
+  background-color: #0d1d35 !important;
+  background-image: linear-gradient(
+    90deg,
+    #0d1d35 0%,
+    #122040 50%,
+    #0d1d35 100%
+  ) !important;
+}

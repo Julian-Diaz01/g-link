@@ -1,17 +1,20 @@
+import React, { Suspense } from 'react'
 import {
   createBrowserRouter,
   createRoutesFromElements,
   Route,
   RouterProvider,
 } from 'react-router-dom'
-import Projects from './pages/Projects/Projects.tsx'
-import Home from './pages/Home/Home.tsx'
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
 import PageStructure from './pages/Wireframe/Page.tsx'
 import InteractiveBackground from './components/InteractiveBackground.tsx'
 import NotFoundPage from './pages/NotFoundPage.tsx'
-import PortfolioDesign from './pages/Version2/version2'
+import Home from './pages/Home/Home.tsx'
+
+// Lazy load routes for code splitting
+const Projects = React.lazy(() => import('./pages/Projects/Projects.tsx'))
+const PortfolioDesign = React.lazy(() => import('./pages/Version2/version2'))
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -28,10 +31,36 @@ const router = createBrowserRouter(
     <>
       <Route path="/" element={<PageStructure />}>
         <Route index element={<Home />} />
-        <Route path="projects/*" element={<Projects />} />
+        <Route
+          path="projects/*"
+          element={
+            <Suspense
+              fallback={
+                <div className="min-h-screen flex items-center justify-center">
+                  <div className="text-lg">Loading Projects...</div>
+                </div>
+              }
+            >
+              <Projects />
+            </Suspense>
+          }
+        />
         <Route path="*" element={<NotFoundPage />} />
       </Route>
-      <Route path="/version2" element={<PortfolioDesign />} />
+      <Route
+        path="/version2"
+        element={
+          <Suspense
+            fallback={
+              <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
+                <div className="text-lg">Loading Portfolio...</div>
+              </div>
+            }
+          >
+            <PortfolioDesign />
+          </Suspense>
+        }
+      />
     </>,
   ),
 )
