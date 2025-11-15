@@ -1,13 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import {
-  Github,
-  Linkedin,
-  Twitter,
-  Mail,
-  Phone,
-  Globe,
-  LucideIcon,
-} from 'lucide-react'
+import { Github, Linkedin, Mail, Phone, Globe, LucideIcon } from 'lucide-react'
 import { Profile } from '../types'
 
 interface ContactProps {
@@ -36,7 +28,6 @@ const obfuscateEmailDisplay = (email: string): string => {
 const iconMap: Record<string, LucideIcon> = {
   Github,
   Linkedin,
-  Twitter,
 }
 
 const Contact: React.FC<ContactProps> = ({ profile }) => {
