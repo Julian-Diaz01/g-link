@@ -9,6 +9,7 @@ const Services = React.lazy(() => import('./components/Services'))
 const Experience = React.lazy(() => import('./components/Experience'))
 const EducationSection = React.lazy(() => import('./components/Education'))
 const Contact = React.lazy(() => import('./components/Contact'))
+const ContactPopup = React.lazy(() => import('./components/ContactPopup'))
 
 // Import JSON data
 import profileData from './data/profile.json'
@@ -39,6 +40,7 @@ const PortfolioDesign: React.FC = () => {
           <Experience jobs={jobs} />
           <EducationSection education={education} />
           <Contact profile={profile} />
+          <ContactPopup />
         </Suspense>
       </div>
     </ThemeProvider>
