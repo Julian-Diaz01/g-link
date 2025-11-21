@@ -2,10 +2,16 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 import theme from '../theme.tsx'
+import SEO from '../components/SEO'
 
 const NotFoundPage: React.FC = () => {
   return (
     <div style={{ textAlign: 'center' }}>
+      <SEO
+        title="404 - Page Not Found | Julian Diaz"
+        description="The page you're looking for doesn't exist. Return to Julian Diaz's portfolio homepage."
+        ogUrl="https://juliandiaz.web.app/404"
+      />
       <h1>Oops! You're lost in space.</h1>
       <p>
         The page you're looking for is not here. Maybe it was swallowed by a

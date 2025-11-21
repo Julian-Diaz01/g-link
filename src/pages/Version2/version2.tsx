@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import { ThemeProvider } from './context/ThemeContext'
 import { Profile, Job, Education, Service } from './types'
+import SEO from '../../components/SEO'
 
 // Lazy load components for code splitting
 const Navigation = React.lazy(() => import('./components/Navigation'))
@@ -26,6 +27,14 @@ const PortfolioDesign: React.FC = () => {
 
   return (
     <ThemeProvider>
+      <SEO
+        title={`${profile.firstName} ${profile.lastName} - ${profile.title}`}
+        description={profile.bio}
+        keywords="Software Developer, Web Developer, React, TypeScript, JavaScript, Berlin, Full Stack Developer, Frontend Developer, Julian Diaz"
+        author={`${profile.firstName} ${profile.lastName}`}
+        ogUrl={profile.website}
+        canonicalUrl={profile.website}
+      />
       <div className="min-h-screen bg-slate-50 dark:bg-slate-900 transition-colors duration-300">
         <Suspense
           fallback={

@@ -1,6 +1,7 @@
 import React, { Suspense } from 'react'
 import { Box, Grid, useMediaQuery } from '@mui/material'
 import theme from '../../theme.tsx'
+import SEO from '../../components/SEO'
 import {
   IntroductionSkeleton,
   DescriptionSkeleton,
@@ -23,6 +24,12 @@ const Home: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
   return (
     <>
+      <SEO
+        title="Julian Diaz - Software Developer | Home"
+        description="Explore Julian Diaz's professional journey as a Software Developer. View experience, education, and technical skills."
+        ogUrl="https://juliandiaz.web.app/home"
+        canonicalUrl="https://juliandiaz.web.app/home"
+      />
       <Grid container sx={{ mt: 10 }}>
         <Grid item md={12} lg={5}>
           <Box
