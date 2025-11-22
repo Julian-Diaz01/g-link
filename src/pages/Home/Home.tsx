@@ -22,13 +22,20 @@ const Footer = React.lazy(() => import('../Wireframe/Footer.tsx'))
 
 const Home: React.FC = () => {
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
+
+  const breadcrumbs = [
+    { name: 'Home', url: 'https://juliandiaz.web.app/' },
+    { name: 'About', url: 'https://juliandiaz.web.app/home' },
+  ]
+
   return (
     <>
       <SEO
         title="Julian Diaz - Software Developer | Home"
-        description="Explore Julian Diaz's professional journey as a Software Developer. View experience, education, and technical skills."
+        description="Explore Julian Diaz's professional journey as a Software Developer. View experience, education, and technical skills in React, TypeScript, Next.js, and modern web development."
         ogUrl="https://juliandiaz.web.app/home"
         canonicalUrl="https://juliandiaz.web.app/home"
+        breadcrumbs={breadcrumbs}
       />
       <Grid container sx={{ mt: 10 }}>
         <Grid item md={12} lg={5}>

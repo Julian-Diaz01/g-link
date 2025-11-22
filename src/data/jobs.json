@@ -60,7 +60,15 @@
     "subTitle": "iomoto",
     "cardLink": "https://www.iomoto.io/",
     "description": "Developed a B2C automotive sales app. Utilized user data to assess electric vehicle fit. Engineered virtual electric vehicle for direct comparison. Led garage feature development, ensuring user-centricity. Managed login flow for security. Contributed to main app and conducted unit testing.",
-    "chips": ["Flutter", "Dart", "CI/DC", "Azure/DevOps", "Jira", "Figma", "Git"],
+    "chips": [
+      "Flutter",
+      "Dart",
+      "CI/DC",
+      "Azure/DevOps",
+      "Jira",
+      "Figma",
+      "Git"
+    ],
     "links": [
       { "title": "Lity", "url": "https://lity.io/" },
       {
