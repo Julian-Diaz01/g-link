@@ -1,21 +1,21 @@
 import React from 'react'
-import { Box, Container, useMediaQuery } from '@mui/material'
+import { Container, useMediaQuery, useTheme } from '@mui/material'
 import Footer from './Footer.tsx'
 import { Outlet } from 'react-router-dom'
 import Header from './NavHeader.tsx'
-import theme from '../../theme.tsx'
 
 const Layout: React.FC = () => {
+  const theme = useTheme()
   const isMobile = useMediaQuery(theme.breakpoints.down('lg'))
 
   return (
-    <Box
-      sx={{
+    <div
+      style={{
         display: 'flex',
         flexDirection: 'column',
         minHeight: '100vh',
-        mr: '10vw',
-        ml: '10vw',
+        marginRight: '10vw',
+        marginLeft: '10vw',
       }}
     >
       <Header />
@@ -32,11 +32,17 @@ const Layout: React.FC = () => {
         <Outlet />
       </Container>
       {isMobile ? (
-        <Box component="footer" sx={{ py: 6 }} marginTop={5}>
+        <footer
+          style={{
+            paddingTop: '48px',
+            paddingBottom: '48px',
+            marginTop: '40px',
+          }}
+        >
           <Footer />
-        </Box>
+        </footer>
       ) : null}
-    </Box>
+    </div>
   )
 }
 

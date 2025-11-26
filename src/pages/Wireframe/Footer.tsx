@@ -24,7 +24,7 @@ const Footer: React.FC = () => {
       sx={{
         maxWidth: '1200px',
         margin: 'auto',
-        color: `${theme.palette.secondary.main}`,
+        color: theme.palette.secondary.main,
         py: 2,
         mt: 'auto',
         display: 'flex',
@@ -32,7 +32,7 @@ const Footer: React.FC = () => {
         alignItems: 'center',
       }}
     >
-      <Box sx={{ display: 'flex', gap: isMobile ? 2 : 1 }}>
+      <div style={{ display: 'flex', gap: isMobile ? '16px' : '8px' }}>
         <FooterLink href="https://github.com/Julian-Diaz01">
           <GitHubIcon sx={{ fontSize: isMobile ? '2rem' : undefined }} />
         </FooterLink>
@@ -42,7 +42,7 @@ const Footer: React.FC = () => {
         <FooterLink href="mailto:judadi1994@gmail.com">
           <EmailIcon sx={{ fontSize: isMobile ? '2rem' : undefined }} />
         </FooterLink>
-      </Box>
+      </div>
       {/* Add the timestamp display */}
       {buildTimestamp && (
         <Typography variant="caption" sx={{ fontStyle: 'italic' }}>

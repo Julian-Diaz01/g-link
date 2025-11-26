@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import ProjectCard from '../../components/ProjectCard.tsx'
 import theme from '../../theme.tsx'
 import languagesData from '../../data/languages.json'
@@ -22,19 +22,26 @@ const Languages: React.FC = () => {
     },
   }
   return (
-    <Box sx={{ mt: 5, mb: 5, pb: 15 }} id="#languages">
+    <div
+      style={{
+        marginTop: '40px',
+        marginBottom: '40px',
+        paddingBottom: '120px',
+      }}
+      id="#languages"
+    >
       <Typography sx={styles.titleStyle}>Languages</Typography>
       {languages.map((lang, index) => (
-        <Box key={index}>
+        <div key={index}>
           <ProjectCard
             title={lang.name}
             subTitle={lang.description}
             chips={lang.chips}
           />
           {index !== languages.length - 1 && <div style={{ height: 20 }} />}
-        </Box>
+        </div>
       ))}
-    </Box>
+    </div>
   )
 }
 

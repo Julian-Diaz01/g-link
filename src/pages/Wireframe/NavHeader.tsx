@@ -17,7 +17,6 @@ import {
 import MenuIcon from '@mui/icons-material/Menu'
 import IconJ from '../../assets/IconJ.tsx'
 import OpenPdfButton from '../../components/OpenPdfButton.tsx'
-import theme from '../../theme.tsx'
 
 const Header: React.FC = () => {
   const theme = useTheme()
@@ -45,7 +44,7 @@ const Header: React.FC = () => {
   }
 
   return (
-    <Box sx={{ flexGrow: 1 }} id="#home">
+    <div style={{ flexGrow: 1 }} id="#home">
       <AppBar position="static" color="transparent" elevation={0}>
         <Toolbar sx={{ justifyContent: 'space-between' }}>
           <HexagonJLink />
@@ -60,16 +59,16 @@ const Header: React.FC = () => {
           />
         </Toolbar>
       </AppBar>
-    </Box>
+    </div>
   )
 }
 
 const HexagonJLink: React.FC = () => (
-  <Box>
+  <div>
     <Link to="/home">
       <IconJ borderColor="secondary" borderThickness={3} />
     </Link>
-  </Box>
+  </div>
 )
 
 const MobileMenuIcon: React.FC<{
@@ -88,21 +87,24 @@ const MobileMenuIcon: React.FC<{
 const MobileDrawer: React.FC<{
   isMobileDrawerOpen: boolean
   toggleMobileDrawer: (open: boolean) => () => void
-}> = ({ isMobileDrawerOpen, toggleMobileDrawer }) => (
-  <Drawer
-    anchor="right"
-    open={isMobileDrawerOpen}
-    onClose={toggleMobileDrawer(false)}
-    sx={{
-      '& .MuiDrawer-paper': {
-        width: '250px',
-        backgroundColor: theme.palette.primary.main,
-      },
-    }}
-  >
-    <MobileDrawerList toggleMobileDrawer={toggleMobileDrawer} />
-  </Drawer>
-)
+}> = ({ isMobileDrawerOpen, toggleMobileDrawer }) => {
+  const theme = useTheme()
+  return (
+    <Drawer
+      anchor="right"
+      open={isMobileDrawerOpen}
+      onClose={toggleMobileDrawer(false)}
+      sx={{
+        '& .MuiDrawer-paper': {
+          width: '250px',
+          backgroundColor: theme.palette.primary.main,
+        },
+      }}
+    >
+      <MobileDrawerList toggleMobileDrawer={toggleMobileDrawer} />
+    </Drawer>
+  )
+}
 
 const MobileDrawerList: React.FC<{
   toggleMobileDrawer: (open: boolean) => () => void
@@ -156,9 +158,28 @@ const DesktopTabs: React.FC<{
       onChange={handleChange}
       aria-label="Navigation Tabs"
       sx={{
-        ...tabStyles.tab,
         color: theme.palette.secondary.main,
         minHeight: 30,
+        '& .MuiButtonBase-root': {
+          minHeight: 30,
+          minWidth: 0,
+        },
+        '& .MuiTabs-indicator': {
+          display: 'flex',
+          justifyContent: 'center',
+          backgroundColor: theme.palette.text.primary,
+          color: theme.palette.text.primary + '!important',
+        },
+        '& .MuiTab-root': {
+          color: theme.palette.text.primary + '!important',
+        },
+        '& .Mui-selected': {
+          fontWeight: 'bold',
+          color: theme.palette.text.primary,
+        },
+        '& .MuiTab-textColorInherit.Mui-selected': {
+          color: theme.palette.text.primary,
+        },
       }}
     >
       {/*  <Tab disableRipple value="home" label="About" component={Link} to="/home" />
@@ -189,31 +210,6 @@ const DesktopTabs: React.FC<{
       </Box>
     </Tabs>
   )
-}
-
-const tabStyles = {
-  tab: {
-    '& .MuiButtonBase-root': {
-      minHeight: 30,
-      minWidth: 0,
-    },
-    '& .MuiTabs-indicator': {
-      display: 'flex',
-      justifyContent: 'center',
-      backgroundColor: theme.palette.text.primary,
-      color: theme.palette.text.primary + '!important',
-    },
-    '& .MuiTab-root': {
-      color: theme.palette.text.primary + '!important',
-    },
-    '& .Mui-selected': {
-      fontWeight: 'bold',
-      color: theme.palette.text.primary,
-    },
-    '& .MuiTab-textColorInherit.Mui-selected': {
-      color: theme.palette.text.primary,
-    },
-  },
 }
 
 export default Header

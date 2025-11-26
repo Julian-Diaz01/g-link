@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Box, Typography, useTheme } from '@mui/material'
+import { Typography, useTheme } from '@mui/material'
 
 const ShowCat: React.FC = () => {
   const [showGif, setShowGif] = useState(false)
@@ -14,10 +14,10 @@ const ShowCat: React.FC = () => {
   }
 
   return (
-    <Box
+    <div
       onMouseEnter={handleMouseEnter}
       onMouseLeave={handleMouseLeave}
-      sx={{
+      style={{
         position: 'relative',
         display: 'inline-block',
         transition: 'color 0.3s',
@@ -36,8 +36,8 @@ const ShowCat: React.FC = () => {
         Mango 🥭
       </Typography>
       {showGif && (
-        <Box
-          sx={{
+        <div
+          style={{
             position: 'absolute',
             top: '-7em',
             zIndex: 9999,
@@ -48,9 +48,9 @@ const ShowCat: React.FC = () => {
             alt="Mango Gif"
             style={{ width: '10wv', height: '100px' }}
           />
-        </Box>
+        </div>
       )}
-    </Box>
+    </div>
   )
 }
 

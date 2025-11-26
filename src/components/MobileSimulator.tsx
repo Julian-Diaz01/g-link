@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 
 interface MobileSimulatorProps {
   src: string // URL of the Flutter web app
@@ -9,10 +9,10 @@ const MobileSimulator: React.FC<MobileSimulatorProps> = ({ src }) => {
   const [hasError, setHasError] = useState<boolean>(false)
 
   return (
-    <Box
-      sx={{
-        width: 375,
-        height: 812,
+    <div
+      style={{
+        width: '375px',
+        height: '812px',
         border: '16px solid black',
         borderRadius: '36px',
         boxShadow: '0 0 10px #000',
@@ -49,7 +49,7 @@ const MobileSimulator: React.FC<MobileSimulatorProps> = ({ src }) => {
           onError={() => setHasError(true)}
         />
       )}
-    </Box>
+    </div>
   )
 }
 

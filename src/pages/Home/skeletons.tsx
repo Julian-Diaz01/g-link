@@ -1,7 +1,7 @@
 import React from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import 'react-loading-skeleton/dist/skeleton.css'
-import { Box, Card, CardContent, Grid } from '@mui/material'
+import { Card, CardContent, Grid } from '@mui/material'
 import theme from '../../theme.tsx'
 
 // Skeleton theme configuration matching the app theme
@@ -28,15 +28,15 @@ export const IntroductionSkeleton: React.FC = () => {
 // Description Skeleton - matches paragraph structure
 export const DescriptionSkeleton: React.FC = () => {
   return (
-    <Box
-      sx={{
+    <div
+      style={{
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
         alignContent: 'flex-start',
       }}
     >
-      <Box sx={{ width: '100%', maxWidth: '800px' }}>
+      <div style={{ width: '100%', maxWidth: '800px' }}>
         <SkeletonTheme
           baseColor={skeletonBaseColor}
           highlightColor={skeletonHighlightColor}
@@ -46,12 +46,12 @@ export const DescriptionSkeleton: React.FC = () => {
           <Skeleton height={20} width="100%" style={{ marginBottom: 8 }} />
           <Skeleton height={20} width="90%" style={{ marginBottom: 8 }} />
           <Skeleton height={20} width="85%" style={{ marginBottom: 8 }} />
-          <Box sx={{ height: 30 }} />
+          <div style={{ height: '30px' }} />
           <Skeleton height={20} width="100%" style={{ marginBottom: 8 }} />
           <Skeleton height={20} width="70%" />
         </SkeletonTheme>
-      </Box>
-    </Box>
+      </div>
+    </div>
   )
 }
 
@@ -89,13 +89,18 @@ const ProjectCardSkeleton: React.FC = () => {
               <Skeleton height={16} width="100%" style={{ marginBottom: 4 }} />
               <Skeleton height={16} width="95%" style={{ marginBottom: 4 }} />
               <Skeleton height={16} width="80%" style={{ marginBottom: 16 }} />
-              <Box
-                sx={{ display: 'flex', gap: 1, flexWrap: 'wrap', marginTop: 1 }}
+              <div
+                style={{
+                  display: 'flex',
+                  gap: '8px',
+                  flexWrap: 'wrap',
+                  marginTop: '8px',
+                }}
               >
                 <Skeleton height={24} width={60} borderRadius={4} />
                 <Skeleton height={24} width={80} borderRadius={4} />
                 <Skeleton height={24} width={70} borderRadius={4} />
-              </Box>
+              </div>
             </SkeletonTheme>
           </CardContent>
         </Grid>
@@ -107,7 +112,7 @@ const ProjectCardSkeleton: React.FC = () => {
 // Experience Skeleton - title + multiple cards
 export const ExperienceSkeleton: React.FC = () => {
   return (
-    <Box sx={{ mt: 5, mb: 5 }}>
+    <div style={{ marginTop: '40px', marginBottom: '40px' }}>
       <SkeletonTheme
         baseColor={skeletonBaseColor}
         highlightColor={skeletonHighlightColor}
@@ -115,19 +120,19 @@ export const ExperienceSkeleton: React.FC = () => {
         <Skeleton height={24} width={120} style={{ marginBottom: 16 }} />
       </SkeletonTheme>
       {[1, 2, 3].map((index) => (
-        <Box key={index}>
+        <div key={index}>
           <ProjectCardSkeleton />
-          {index !== 3 && <Box sx={{ height: 20 }} />}
-        </Box>
+          {index !== 3 && <div style={{ height: '20px' }} />}
+        </div>
       ))}
-    </Box>
+    </div>
   )
 }
 
 // Education Skeleton - title + multiple cards
 export const EducationSkeleton: React.FC = () => {
   return (
-    <Box sx={{ mt: 5, mb: 5 }}>
+    <div style={{ marginTop: '40px', marginBottom: '40px' }}>
       <SkeletonTheme
         baseColor={skeletonBaseColor}
         highlightColor={skeletonHighlightColor}
@@ -135,19 +140,25 @@ export const EducationSkeleton: React.FC = () => {
         <Skeleton height={24} width={120} style={{ marginBottom: 16 }} />
       </SkeletonTheme>
       {[1, 2].map((index) => (
-        <Box key={index}>
+        <div key={index}>
           <ProjectCardSkeleton />
-          {index !== 2 && <Box sx={{ height: 20 }} />}
-        </Box>
+          {index !== 2 && <div style={{ height: '20px' }} />}
+        </div>
       ))}
-    </Box>
+    </div>
   )
 }
 
 // Languages Skeleton - title + multiple cards
 export const LanguagesSkeleton: React.FC = () => {
   return (
-    <Box sx={{ mt: 5, mb: 5, pb: 15 }}>
+    <div
+      style={{
+        marginTop: '40px',
+        marginBottom: '40px',
+        paddingBottom: '120px',
+      }}
+    >
       <SkeletonTheme
         baseColor={skeletonBaseColor}
         highlightColor={skeletonHighlightColor}
@@ -155,19 +166,19 @@ export const LanguagesSkeleton: React.FC = () => {
         <Skeleton height={24} width={120} style={{ marginBottom: 16 }} />
       </SkeletonTheme>
       {[1, 2, 3].map((index) => (
-        <Box key={index}>
+        <div key={index}>
           <ProjectCardSkeleton />
-          {index !== 3 && <Box sx={{ height: 20 }} />}
-        </Box>
+          {index !== 3 && <div style={{ height: '20px' }} />}
+        </div>
       ))}
-    </Box>
+    </div>
   )
 }
 
 // HomeMenu Skeleton - navigation links
 export const HomeMenuSkeleton: React.FC = () => {
   return (
-    <Box sx={{ mt: 5 }}>
+    <div style={{ marginTop: '40px' }}>
       <SkeletonTheme
         baseColor={skeletonBaseColor}
         highlightColor={skeletonHighlightColor}
@@ -185,20 +196,20 @@ export const HomeMenuSkeleton: React.FC = () => {
           />
         ))}
       </SkeletonTheme>
-    </Box>
+    </div>
   )
 }
 
 // Footer Skeleton - icons + text
 export const FooterSkeleton: React.FC = () => {
   return (
-    <Box
-      component="footer"
-      sx={{
+    <div
+      style={{
         maxWidth: '1200px',
         margin: 'auto',
-        py: 2,
-        mt: 'auto',
+        paddingTop: '16px',
+        paddingBottom: '16px',
+        marginTop: 'auto',
         display: 'flex',
         justifyContent: 'space-between',
         alignItems: 'center',
@@ -208,13 +219,13 @@ export const FooterSkeleton: React.FC = () => {
         baseColor={skeletonBaseColor}
         highlightColor={skeletonHighlightColor}
       >
-        <Box sx={{ display: 'flex', gap: 1 }}>
+        <div style={{ display: 'flex', gap: '8px' }}>
           <Skeleton circle height={32} width={32} />
           <Skeleton circle height={32} width={32} />
           <Skeleton circle height={32} width={32} />
-        </Box>
+        </div>
         <Skeleton height={14} width={150} />
       </SkeletonTheme>
-    </Box>
+    </div>
   )
 }

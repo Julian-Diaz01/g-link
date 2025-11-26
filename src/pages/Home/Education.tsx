@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import ProjectCard from '../../components/ProjectCard.tsx'
 import theme from '../../theme.tsx'
 import educationData from '../../data/education.json'
@@ -26,10 +26,10 @@ const Education: React.FC = () => {
     },
   }
   return (
-    <Box sx={{ mt: 5, mb: 5 }} id="#education">
+    <div style={{ marginTop: '40px', marginBottom: '40px' }} id="#education">
       <Typography sx={styles.titleStyle}>Education</Typography>
       {education.map((diploma, index) => (
-        <Box key={index}>
+        <div key={index}>
           <ProjectCard
             monthYearRange={diploma.monthYearRange}
             title={diploma.title}
@@ -40,9 +40,9 @@ const Education: React.FC = () => {
             links={diploma.links}
           />
           {index !== education.length - 1 && <div style={{ height: 20 }} />}
-        </Box>
+        </div>
       ))}
-    </Box>
+    </div>
   )
 }
 

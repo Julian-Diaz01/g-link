@@ -1,12 +1,12 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import TextHighlighter from '../../components/TextHighlighter.tsx'
 import ShowCat from '../../components/ShowCat.tsx'
 
 const Description: React.FC = () => {
   return (
-    <Box
-      sx={{
+    <div
+      style={{
         display: 'flex',
         flexWrap: 'wrap',
         justifyContent: 'center',
@@ -34,9 +34,9 @@ const Description: React.FC = () => {
         a Bachelor’s in Multimedia Engineering, which gives me a unique mix of
         technical depth and design thinking. This combination allows me to
         bridge the gap between functionality and user experience, and to adapt
-        quickly across different stages of a product’s development.
+        quickly across different stages of a product's development.
       </TextHighlighter>
-      <Box sx={{ height: 30 }} />
+      <div style={{ height: '30px' }} />
       <Typography
         component="span"
         sx={{
@@ -48,7 +48,7 @@ const Description: React.FC = () => {
         Outside of coding, you'll often find me exploring the vibrant streets of
         Berlin on my bike or enjoying downtime with my cat, <ShowCat />.
       </Typography>
-    </Box>
+    </div>
   )
 }
 export default Description

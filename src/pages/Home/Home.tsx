@@ -1,5 +1,5 @@
 import React, { Suspense } from 'react'
-import { Box, Grid, useMediaQuery } from '@mui/material'
+import { Grid, useMediaQuery } from '@mui/material'
 import theme from '../../theme.tsx'
 import SEO from '../../components/SEO'
 import {
@@ -39,8 +39,8 @@ const Home: React.FC = () => {
       />
       <Grid container sx={{ mt: 10 }}>
         <Grid item md={12} lg={5}>
-          <Box
-            sx={{
+          <div
+            style={{
               width: isMobile ? '100%' : '30.666%',
               position: isMobile ? 'inherit' : 'fixed',
             }}
@@ -51,14 +51,20 @@ const Home: React.FC = () => {
             {!isMobile ? (
               <>
                 <HomeMenu />
-                <Box component="footer" sx={{ py: 6 }} marginTop={5}>
+                <footer
+                  style={{
+                    paddingTop: '48px',
+                    paddingBottom: '48px',
+                    marginTop: '40px',
+                  }}
+                >
                   <Suspense fallback={<FooterSkeleton />}>
                     <Footer />
                   </Suspense>
-                </Box>
+                </footer>
               </>
             ) : null}
-          </Box>
+          </div>
         </Grid>
         <Grid
           item
@@ -69,9 +75,9 @@ const Home: React.FC = () => {
           <Suspense fallback={<DescriptionSkeleton />}>
             <Description />
           </Suspense>
-          <Box sx={{ mt: 10 }}>
+          <div style={{ marginTop: '80px' }}>
             <div id="#experidence" />
-          </Box>
+          </div>
           <Suspense fallback={<ExperienceSkeleton />}>
             <Experience />
           </Suspense>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Box, Typography } from '@mui/material'
+import { Typography } from '@mui/material'
 import ProjectCard from '../../components/ProjectCard.tsx'
 import theme from '../../theme.tsx'
 import jobsData from '../../data/jobs.json'
@@ -25,10 +25,10 @@ const Experience: React.FC = () => {
     },
   }
   return (
-    <Box sx={{ mt: 5, mb: 5 }} id="#experience">
+    <div style={{ marginTop: '40px', marginBottom: '40px' }} id="#experience">
       <Typography sx={styles.titleStyle}>Experience</Typography>
       {jobs.map((job, index) => (
-        <Box key={index}>
+        <div key={index}>
           <ProjectCard
             monthYearRange={job.monthYearRange}
             title={job.title}
@@ -39,9 +39,9 @@ const Experience: React.FC = () => {
             links={job.links}
           />
           {index !== jobs.length - 1 && <div style={{ height: 20 }} />}
-        </Box>
+        </div>
       ))}
-    </Box>
+    </div>
   )
 }
 export default Experience

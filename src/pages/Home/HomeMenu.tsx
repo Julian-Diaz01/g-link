@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react'
-import { Box, Typography, useTheme } from '@mui/material'
+import { Typography, useTheme } from '@mui/material'
 import { Link } from 'react-router-dom'
 
 const HomeMenu: React.FC = () => {
@@ -66,7 +66,7 @@ const HomeMenu: React.FC = () => {
   })
 
   return (
-    <Box sx={{ mt: 5 }}>
+    <div style={{ marginTop: '40px' }}>
       <Typography sx={linkStyles('#home')} onClick={handleScroll('#home')}>
         About
       </Typography>
@@ -116,7 +116,7 @@ const HomeMenu: React.FC = () => {
           v2
         </Typography>
       </Link>
-    </Box>
+    </div>
   )
 }
 

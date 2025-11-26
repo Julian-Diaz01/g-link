@@ -7,12 +7,15 @@ import {
 } from 'react-router-dom'
 import { initializeApp } from 'firebase/app'
 import { getAnalytics } from 'firebase/analytics'
-import PageStructure from './pages/Wireframe/Page.tsx'
+import { ThemeProvider } from '@mui/material/styles'
+import { CssBaseline } from '@mui/material'
+import theme from './theme.tsx'
 import InteractiveBackground from './components/InteractiveBackground.tsx'
 import NotFoundPage from './pages/NotFoundPage.tsx'
-import Home from './pages/Home/Home.tsx'
 
 // Lazy load routes for code splitting
+const PageStructure = React.lazy(() => import('./pages/Wireframe/Page.tsx'))
+const Home = React.lazy(() => import('./pages/Home/Home.tsx'))
 const Projects = React.lazy(() => import('./pages/Projects/Projects.tsx'))
 const PortfolioDesign = React.lazy(() => import('./pages/Version2/version2'))
 
@@ -45,8 +48,37 @@ const router = createBrowserRouter(
         }
       />
       {/* Old version accessible at /home */}
-      <Route path="/home" element={<PageStructure />}>
-        <Route index element={<Home />} />
+      <Route
+        path="/home"
+        element={
+          <Suspense
+            fallback={
+              <div className="min-h-screen flex items-center justify-center">
+                <div className="text-lg">Loading Version 1...</div>
+              </div>
+            }
+          >
+            <ThemeProvider theme={theme}>
+              <CssBaseline />
+              <PageStructure />
+            </ThemeProvider>
+          </Suspense>
+        }
+      >
+        <Route
+          index
+          element={
+            <Suspense
+              fallback={
+                <div className="min-h-screen flex items-center justify-center">
+                  <div className="text-lg">Loading Home...</div>
+                </div>
+              }
+            >
+              <Home />
+            </Suspense>
+          }
+        />
         <Route
           path="projects/*"
           element={

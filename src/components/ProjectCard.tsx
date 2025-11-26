@@ -1,6 +1,5 @@
 import React from 'react'
 import {
-  Box,
   Card,
   CardContent,
   Chip,
@@ -167,7 +166,14 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
               <Typography variant="body2" sx={styles.typographyBody}>
                 {description}
               </Typography>
-              <Box sx={styles.linkBox}>
+              <div
+                style={{
+                  display: 'flex',
+                  flexDirection: 'column',
+                  gap: '4px',
+                  marginBottom: '16px',
+                }}
+              >
                 {links?.map((link, index) => (
                   <Typography
                     key={index}
@@ -187,7 +193,7 @@ const ProjectCard: React.FC<ProjectCardProps> = ({
                     </Link>
                   </Typography>
                 ))}
-              </Box>
+              </div>
               {chips.map((chip, index) => (
                 <Chip key={index} label={chip} sx={styles.chip} />
               ))}
