@@ -40,16 +40,16 @@ export default function Scene() {
         <div className="absolute -bottom-[13px] right-[101px] w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[14px] border-t-slate-50 dark:border-t-slate-900"></div>
       </div>
       <Canvas>
-        <PerspectiveCamera makeDefault position={[6, 7, 9]} />
+        <PerspectiveCamera makeDefault position={[5, 7, 10]} />
         <OrbitControls
-          enabled={false}
+          enabled={true}
           enableDamping
           dampingFactor={0.05}
-          target={[0, 0, 0]}
+          target={[0, 0, 2]}
         />
 
-        <ambientLight intensity={0.5} />
-        <directionalLight position={[10, 10, 5]} intensity={1} />
+        <ambientLight intensity={0} />
+        <directionalLight position={[10, 10, 5]} intensity={0} />
         <pointLight position={[-10, -10, -5]} intensity={0.5} />
 
         <group position={[0, 1, 0]} scale={0.1}>
