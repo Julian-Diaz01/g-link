@@ -2,7 +2,7 @@ import React, { Suspense, lazy } from 'react'
 import { Star, ArrowRight } from 'lucide-react'
 import { Profile } from '../types'
 
-const Scene = lazy(() => import('../../../components/Scene'))
+const Scene = lazy(() => import('./Scene'))
 
 interface HeroProps {
   profile: Profile

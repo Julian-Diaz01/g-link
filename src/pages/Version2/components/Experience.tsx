@@ -1,6 +1,7 @@
 import React from 'react'
 import { ExternalLink } from 'lucide-react'
 import { Job } from '../types'
+import RunningCatScene from './RunningCatScene'
 
 interface ExperienceProps {
   jobs: Job[]
@@ -10,9 +11,10 @@ const Experience: React.FC<ExperienceProps> = ({ jobs }) => {
   return (
     <section
       id="experience"
-      className="py-12 sm:py-16 md:py-20 bg-slate-50 dark:bg-slate-900"
+      className="pb-12 sm:pb-16 md:pb-20 bg-slate-50 dark:bg-slate-900"
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <RunningCatScene />
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-[-100px] relative z-10">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 dark:text-white">
             Work{' '}

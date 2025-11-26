@@ -1,14 +1,15 @@
 'use client'
 
-import { useState, useEffect, Suspense } from 'react'
+import { useState, useEffect, Suspense, useRef } from 'react'
 import { Canvas } from '@react-three/fiber'
-import { OrbitControls, PerspectiveCamera } from '@react-three/drei'
+import { OrbitControls } from '@react-three/drei'
 import { Model } from './Model'
-import { useTheme } from '../pages/Version2/context/ThemeContext'
+import { useTheme } from '../context/ThemeContext.tsx'
 
 export default function Scene() {
   const [scrollY, setScrollY] = useState(0)
   const { isDark } = useTheme()
+  const containerRef = useRef<HTMLDivElement>(null)
 
   useEffect(() => {
     const handleScroll = () => {
@@ -22,7 +23,7 @@ export default function Scene() {
   const modelRotation: [number, number, number] = [0, scrollY * 0.001, 0]
 
   return (
-    <div className="w-full h-screen relative">
+    <div ref={containerRef} className="w-full h-screen relative">
       {/* Dialogue Box */}
       <div className="absolute top-8 right-8 z-10 bg-slate-50 dark:bg-slate-900 px-6 py-4 rounded-2xl shadow-2xl border-2 border-orange-500 max-w-xs">
         <div className="relative">
@@ -39,13 +40,17 @@ export default function Scene() {
         {/* Inner triangle (fill) */}
         <div className="absolute -bottom-[13px] right-[101px] w-0 h-0 border-l-[12px] border-l-transparent border-r-[12px] border-r-transparent border-t-[14px] border-t-slate-50 dark:border-t-slate-900"></div>
       </div>
-      <Canvas>
-        <PerspectiveCamera makeDefault position={[5, 7, 10]} />
+      <Canvas
+        gl={{ preserveDrawingBuffer: true }}
+        eventSource={containerRef.current || undefined}
+        eventPrefix="client"
+        camera={{ position: [5, 7, 10], fov: 50 }}
+      >
         <OrbitControls
-          enabled={true}
           enableDamping
           dampingFactor={0.05}
           target={[0, 0, 2]}
+          makeDefault
         />
 
         <ambientLight intensity={0} />
