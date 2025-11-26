@@ -1,7 +1,8 @@
-import React from 'react'
+import React, { Suspense, lazy } from 'react'
 import { ExternalLink } from 'lucide-react'
 import { Job } from '../types'
-import RunningCatScene from './RunningCatScene'
+
+const RunningCatScene = lazy(() => import('./RunningCatScene'))
 
 interface ExperienceProps {
   jobs: Job[]
@@ -13,7 +14,13 @@ const Experience: React.FC<ExperienceProps> = ({ jobs }) => {
       id="experience"
       className="pb-12 sm:pb-16 md:pb-20 bg-slate-50 dark:bg-slate-900"
     >
-      <RunningCatScene />
+      <Suspense
+        fallback={
+          <div className="w-full h-[200px] sm:h-[250px] md:h-[300px]"></div>
+        }
+      >
+        <RunningCatScene />
+      </Suspense>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 top-[-100px] relative z-10">
         <div className="text-center mb-8 sm:mb-12 md:mb-16">
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-3 sm:mb-4 dark:text-white">
