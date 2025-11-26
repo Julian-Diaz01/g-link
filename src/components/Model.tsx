@@ -23,7 +23,10 @@ interface ModelProps {
   disperseStrength?: number
   returnSpeed?: number
   use3DGradient?: boolean
-  gradientColors?: Array<{ color: string; position: [number, number, number] }>
+  gradientColors?: Array<{
+    color: string
+    position: [number, number, number]
+  }> | null
   gradientBlendPower?: number
   playAnimation?: boolean
   animationIndex?: number

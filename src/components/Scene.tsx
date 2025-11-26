@@ -67,7 +67,7 @@ export default function Scene() {
               autoRotate={false}
               interactive={true}
               disperseRadius={6}
-              disperseStrength={10}
+              disperseStrength={100}
               returnSpeed={1.0}
               use3DGradient={true}
               gradientColors={
