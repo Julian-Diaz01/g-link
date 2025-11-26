@@ -1,29 +1,14 @@
-import React, { useState, useEffect } from 'react'
+import React, { Suspense, lazy } from 'react'
 import { Star, ArrowRight } from 'lucide-react'
 import { Profile } from '../types'
-import julian1 from '../img/julian1.webp'
-import julian2 from '../img/julian2.webp'
-import julian3 from '../img/julian3.webp'
-import julian4 from '../img/julian4.webp'
+
+const Scene = lazy(() => import('../../../components/Scene'))
 
 interface HeroProps {
   profile: Profile
 }
 
 const Hero: React.FC<HeroProps> = ({ profile }) => {
-  const images = [julian1, julian2, julian3, julian4]
-  const [currentImageIndex, setCurrentImageIndex] = useState(
-    Math.floor(Math.random() * 4),
-  )
-
-  useEffect(() => {
-    const interval = setInterval(() => {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % 4)
-    }, 4000) // Rotate every 20 seconds
-
-    return () => clearInterval(interval)
-  }, [])
-
   return (
     <section
       id="home"
@@ -114,33 +99,17 @@ const Hero: React.FC<HeroProps> = ({ profile }) => {
             </div>
           </div>
 
-          {/* Right Column - Image */}
-          <div className="relative order-1 lg:order-2">
-            <div className="relative w-full aspect-square max-w-xs sm:max-w-sm md:max-w-md lg:max-w-lg mx-auto">
-              {/* Orange Circle Background */}
-              <div className="absolute inset-0 bg-gradient-to-br from-orange-300 to-orange-500 rounded-full transform scale-90" />
-
-              {/* Decorative Elements */}
-              <div className="hidden sm:block absolute top-10 -left-10 w-16 h-16 sm:w-20 sm:h-20 bg-orange-200 rounded-3xl transform rotate-12 opacity-60" />
-              <div className="hidden sm:block absolute bottom-20 -right-8 w-12 h-12 sm:w-16 sm:h-16 bg-orange-300 rounded-2xl transform -rotate-12 opacity-60" />
-
-              {/* Image */}
-              <div className="absolute inset-0 flex items-end justify-center">
-                <img
-                  src={images[currentImageIndex]}
-                  alt="hero"
-                  className="w-4/5 h-4/5 object-cover rounded-t-full transition-opacity duration-500"
-                  key={currentImageIndex}
-                />
-              </div>
-
-              {/* Floating Info Card */}
-              <div className="absolute top-8 sm:top-16 -right-2 sm:-right-4 bg-white dark:bg-slate-800 px-3 sm:px-4 py-2 sm:py-3 rounded-xl sm:rounded-2xl shadow-xl border border-slate-100 dark:border-slate-700">
-                <p className="text-xs text-orange-500 dark:text-orange-400 font-medium">
-                  ★ Recommended
-                </p>
-              </div>
-            </div>
+          {/* Right Column - 3D Scene */}
+          <div className="relative order-2 lg:order-2 h-[400px] sm:h-[500px] md:h-[600px] lg:h-[700px] w-full">
+            <Suspense
+              fallback={
+                <div className="flex items-center justify-center h-full">
+                  <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-orange-500"></div>
+                </div>
+              }
+            >
+              <Scene />
+            </Suspense>
           </div>
         </div>
       </div>
