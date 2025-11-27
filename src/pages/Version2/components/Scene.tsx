@@ -11,7 +11,10 @@ export default function Scene() {
   const containerRef = useRef<HTMLDivElement>(null)
 
   return (
-    <div ref={containerRef} className="w-full h-screen relative">
+    <div
+      ref={containerRef}
+      className="w-full h-screen relative cursor-grab active:cursor-grabbing"
+    >
       {/* Dialogue Box */}
       <div className="absolute top-8 right-8 z-10 bg-slate-50 dark:bg-slate-900 px-6 py-4 rounded-2xl shadow-2xl border-2 border-orange-500 max-w-xs">
         <div className="relative">
@@ -33,7 +36,7 @@ export default function Scene() {
         gl={{ preserveDrawingBuffer: true }}
         eventSource={containerRef.current || undefined}
         eventPrefix="client"
-        camera={{ position: [7, 2, 6], fov: 50 }}
+        camera={{ position: [8, 2, 7], fov: 50 }}
         dpr={[1, 2]}
         frameloop="always"
       >
