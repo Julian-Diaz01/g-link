@@ -254,40 +254,43 @@ export default function RunningCatScene() {
       className="w-full h-[200px] sm:h-[250px] md:h-[300px] relative rounded-lg overflow-hidden"
     >
       <Canvas
+        key="running-cat-scene"
         gl={{ preserveDrawingBuffer: true }}
         dpr={[1, 2]}
         eventSource={containerRef.current || undefined}
         eventPrefix="offset"
         camera={{ position: [cameraX, cameraY, cameraZ], fov: fov }}
+        frameloop="always"
       >
         <ambientLight intensity={0} />
         <directionalLight position={[10, 10, 5]} intensity={0} />
         <pointLight position={[-10, -10, -5]} intensity={0.5} />
 
-        <group position={[horizontalPosition, 1, 0]} scale={0.1}>
+        <group
+          position={[horizontalPosition, 1, 0]}
+          scale={0.1}
+          key="running-cat-group"
+        >
           <Suspense fallback={null}>
             <Model
-              key={modelPath}
+              key={`running-cat-model-${modelPath}`}
               modelPath={modelPath}
               particleColor="#00ffff"
               meshColor="#F3F3F3"
               meshOpacity={0.05}
               particleSize={0.2}
               sampleRate={1}
-              animated={true}
+              animated={isDark ? true : false}
               showMesh={true}
               rotation={modelRotation}
               autoRotate={false}
-              interactive={true}
-              disperseRadius={6}
-              disperseStrength={100}
-              returnSpeed={1.0}
+              interactive={false}
               use3DGradient={true}
               gradientColors={
                 isDark
                   ? [
-                      { color: '#ff00ff', position: [0, 0, 1] },
-                      { color: '#00ffff', position: [1, 0, 1] },
+                      { color: '#FF9101', position: [1, 1, 1] },
+                      { color: '#00F7FF', position: [0, 0, 1] },
                     ]
                   : [
                       { color: '#FF4800', position: [1, 0, 0] },
