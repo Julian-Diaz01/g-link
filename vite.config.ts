@@ -6,10 +6,7 @@ export default defineConfig({
   server: {
     port: 3000,
   },
-  plugins: [
-    eslintPlugin(),
-    react(),
-  ],
+  plugins: [eslintPlugin(), react()],
   build: {
     outDir: 'build',
   },
