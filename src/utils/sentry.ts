@@ -8,7 +8,6 @@ export const initSentry = () => {
     return
   }
 
-  // Baseline configuration with logging enabled
   Sentry.init({
     dsn,
     enableLogs: true,
