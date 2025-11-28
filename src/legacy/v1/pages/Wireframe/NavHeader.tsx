@@ -15,7 +15,7 @@ import {
   useTheme,
 } from '@mui/material'
 import MenuIcon from '@mui/icons-material/Menu'
-import IconJ from '../../assets/IconJ.tsx'
+import IconJ from '../../../../assets/IconJ.tsx'
 import OpenPdfButton from '../../components/OpenPdfButton.tsx'
 
 const Header: React.FC = () => {

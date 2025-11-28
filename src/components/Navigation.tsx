@@ -68,13 +68,6 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
             >
               CV
             </a>
-            <Link
-              to="/home"
-              className="text-slate-600 text-sm dark:text-slate-300
-               hover:text-orange-500 dark:hover:text-orange-400 transition "
-            >
-              v1
-            </Link>
             <DarkModeToggle />
           </div>
 

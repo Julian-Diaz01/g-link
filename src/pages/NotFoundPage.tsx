@@ -1,7 +1,6 @@
 // components/NotFoundPage.tsx
 import React from 'react'
 import { Link } from 'react-router-dom'
-import theme from '../theme.tsx'
 import SEO from '../components/SEO'
 
 const NotFoundPage: React.FC = () => {
@@ -22,7 +21,7 @@ const NotFoundPage: React.FC = () => {
         <Link
           to="/"
           style={{
-            color: theme.palette.secondary.main,
+            color: '#f5c422',
             textDecoration: 'none',
           }}
         >
@@ -32,7 +31,7 @@ const NotFoundPage: React.FC = () => {
         <Link
           to="/search"
           style={{
-            color: theme.palette.secondary.main,
+            color: '#f5c422',
             textDecoration: 'none',
           }}
         >

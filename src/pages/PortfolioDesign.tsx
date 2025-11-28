@@ -1,28 +1,28 @@
 import React, { Suspense, useMemo } from 'react'
-import { ThemeProvider } from './context/ThemeContext'
-import { Profile, Job, Education, Service } from './types'
-import SEO from '../../components/SEO'
+import { ThemeProvider } from '../context/ThemeContext'
+import { Profile, Job, Education, Service } from '../types'
+import SEO from '../components/SEO'
 import {
   generateComprehensiveProfileSchema,
   generateWorkExperienceSchema,
   generateEducationSchema,
   generateFAQSchema,
-} from '../../utils/seoStructuredData'
+} from '../utils/seoStructuredData'
 
 // Lazy load components for code splitting
-const Navigation = React.lazy(() => import('./components/Navigation'))
-const Hero = React.lazy(() => import('./components/Hero'))
-const Services = React.lazy(() => import('./components/Services'))
-const Experience = React.lazy(() => import('./components/Experience'))
-const EducationSection = React.lazy(() => import('./components/Education'))
-const Contact = React.lazy(() => import('./components/Contact'))
-const ContactPopup = React.lazy(() => import('./components/ContactPopup'))
+const Navigation = React.lazy(() => import('../components/Navigation'))
+const Hero = React.lazy(() => import('../components/Hero'))
+const Services = React.lazy(() => import('../components/Services'))
+const Experience = React.lazy(() => import('../components/Experience'))
+const EducationSection = React.lazy(() => import('../components/Education'))
+const Contact = React.lazy(() => import('../components/Contact'))
+const ContactPopup = React.lazy(() => import('../components/ContactPopup'))
 
 // Import JSON data
-import profileData from './data/profile.json'
-import servicesData from './data/services.json'
-import jobsData from '../../data/jobs.json'
-import educationData from '../../data/education.json'
+import profileData from '../data/profile.json'
+import servicesData from '../data/services.json'
+import jobsData from '../data/jobs.json'
+import educationData from '../data/education.json'
 
 const PortfolioDesign: React.FC = () => {
   // Type assertions for JSON imports
