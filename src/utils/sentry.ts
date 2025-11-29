@@ -24,7 +24,6 @@ export const initSentry = () => {
     // Session Replay
     replaysSessionSampleRate: 0.1, // 10% of sessions
     replaysOnErrorSampleRate: 1.0, // 100% of sessions with errors
-    environment: import.meta.env.MODE || 'development',
   })
 }
 
