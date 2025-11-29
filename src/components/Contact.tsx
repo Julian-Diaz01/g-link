@@ -1,5 +1,5 @@
 import React, { useState, useCallback } from 'react'
-import { Github, Linkedin, Mail, Phone, Globe, LucideIcon } from 'lucide-react'
+import { Github, Linkedin, Mail, LucideIcon } from 'lucide-react'
 import { Profile } from '../types'
 
 interface ContactProps {
@@ -94,22 +94,6 @@ const Contact: React.FC<ContactProps> = ({ profile }) => {
           >
             <Mail className="w-4 h-4 flex-shrink-0" />
             <span className="break-all">{displayedEmail}</span>
-          </a>
-          <a
-            href={`tel:${profile.phone}`}
-            className="flex items-center justify-center gap-2 hover:text-orange-100 dark:hover:text-orange-300 transition"
-          >
-            <Phone className="w-4 h-4" />
-            {profile.phone}
-          </a>
-          <a
-            href={profile.website}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 hover:text-orange-100 dark:hover:text-orange-300 transition"
-          >
-            <Globe className="w-4 h-4" />
-            Website
           </a>
         </div>
 

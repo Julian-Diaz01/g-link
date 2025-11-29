@@ -50,8 +50,6 @@ export interface Profile {
   bio: string
   location: string
   email: string
-  phone: string
-  website: string
   yearsOfExperience: number
   projectsCompleted: number
   socialLinks: SocialLink[]

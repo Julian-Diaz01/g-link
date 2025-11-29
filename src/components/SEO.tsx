@@ -228,7 +228,6 @@ const SEO: React.FC<SEOProps> = ({
       <meta name="language" content="English" />
       <meta name="revisit-after" content="7 days" />
       <meta httpEquiv="Content-Type" content="text/html; charset=utf-8" />
-      <meta name="format-detection" content="telephone=yes" />
       <meta name="geo.region" content="DE-BE" />
       <meta name="geo.placename" content="Berlin" />
 
