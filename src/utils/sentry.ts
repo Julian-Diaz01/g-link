@@ -39,9 +39,10 @@ export const trackMetric = (
     tags: {
       metric: true,
       event: eventName,
-      ...(data && Object.fromEntries(
-        Object.entries(data).map(([key, value]) => [key, String(value)])
-      )),
+      ...(data &&
+        Object.fromEntries(
+          Object.entries(data).map(([key, value]) => [key, String(value)]),
+        )),
     },
     extra: data,
   })
