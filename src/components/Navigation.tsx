@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { Profile } from '../types'
 import DarkModeToggle from './DarkModeToggle'
+import { trackMetric } from '../utils/sentry'
 
 interface NavigationProps {
   profile: Profile
@@ -65,6 +66,11 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
               href="/julian_diaz_cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
+              onClick={() =>
+                trackMetric('cv_button_click', {
+                  location: 'navigation_desktop',
+                })
+              }
             >
               CV
             </a>
@@ -111,7 +117,12 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
                 href="/julian_diaz_cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
-                onClick={closeMobileMenu}
+                onClick={() => {
+                  trackMetric('cv_button_click', {
+                    location: 'navigation_mobile',
+                  })
+                  closeMobileMenu()
+                }}
               >
                 CV
               </a>

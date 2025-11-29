@@ -1,4 +1,4 @@
-import React, { Suspense, useMemo } from 'react'
+import React, { Suspense, useMemo, useEffect } from 'react'
 import { ThemeProvider } from '../context/ThemeContext'
 import { Profile, Job, Education, Service } from '../types'
 import SEO from '../components/SEO'
@@ -8,6 +8,7 @@ import {
   generateEducationSchema,
   generateFAQSchema,
 } from '../utils/seoStructuredData'
+import { trackMetric } from '../utils/sentry'
 
 // Lazy load components for code splitting
 const Navigation = React.lazy(() => import('../components/Navigation'))
@@ -96,6 +97,14 @@ const PortfolioDesign: React.FC = () => {
     { name: 'Home', url: 'https://juliandiaz.web.app/' },
     { name: 'Portfolio', url: 'https://juliandiaz.web.app/' },
   ]
+
+  // Track page load
+  useEffect(() => {
+    trackMetric('page_load', {
+      page: 'portfolio',
+      timestamp: Date.now(),
+    })
+  }, [])
 
   return (
     <ThemeProvider>

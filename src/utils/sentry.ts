@@ -29,3 +29,20 @@ export const initSentry = () => {
 
 export { Sentry }
 export const { logger } = Sentry
+
+export const trackMetric = (
+  eventName: string,
+  data?: Record<string, string | number | boolean>,
+) => {
+  Sentry.captureMessage(eventName, {
+    level: 'info',
+    tags: {
+      metric: true,
+      event: eventName,
+      ...(data && Object.fromEntries(
+        Object.entries(data).map(([key, value]) => [key, String(value)])
+      )),
+    },
+    extra: data,
+  })
+}

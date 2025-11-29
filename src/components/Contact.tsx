@@ -1,6 +1,7 @@
 import React, { useState, useCallback } from 'react'
 import { Github, Linkedin, Mail, LucideIcon } from 'lucide-react'
 import { Profile } from '../types'
+import { trackMetric } from '../utils/sentry'
 
 interface ContactProps {
   profile: Profile
@@ -39,6 +40,7 @@ const Contact: React.FC<ContactProps> = ({ profile }) => {
   const handleEmailClick = useCallback(
     (e: React.MouseEvent<HTMLAnchorElement>) => {
       e.preventDefault()
+      trackMetric('contact_button_click', { type: 'email' })
       const decodedEmail = decodeEmail(encodedEmail)
       window.location.href = `mailto:${decodedEmail}`
     },
@@ -80,6 +82,9 @@ const Contact: React.FC<ContactProps> = ({ profile }) => {
             target="_blank"
             rel="noopener noreferrer"
             className="border-2 border-white dark:border-slate-200 text-white dark:text-slate-100 px-6 sm:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-white/10 dark:hover:bg-slate-800/30 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
+            onClick={() =>
+              trackMetric('cv_button_click', { location: 'contact_section' })
+            }
           >
             View Resume
           </a>
