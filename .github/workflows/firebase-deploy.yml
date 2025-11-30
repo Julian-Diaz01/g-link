@@ -31,12 +31,6 @@ jobs:
           echo "VITE_BUILD_TIMESTAMP=$(date -u +"%Y-%m-%dT%H:%M:%SZ")" >> .env
       - name: Build
         run: npm run build
-
-      - name: Copy build from flutter project
-        run: |
-          git clone https://github.com/Julian-Diaz01/randomPokemon build-temp-flutter
-          cp -r build-temp-flutter/build/web/* build/
-
       - name: Deploy to Firebase
         uses: w9jds/firebase-action@master
         with:
