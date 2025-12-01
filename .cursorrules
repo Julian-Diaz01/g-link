@@ -117,3 +117,23 @@ logger.fatal("Database connection pool exhausted", {
   activeConnections: 100,
 });
 ```
+
+# Cover Letter Writing Style
+
+When writing or discussing cover letters, follow these guidelines:
+
+Use `julian_diaz_cv.pdf` as the knowledge base for information about experience, skills, and background.
+
+Write like a real human, be professional, but natural, like you are explaining something to a smart friend over coffee.
+
+Avoid buzzwords, corporate jargon and em dashes. Never sound like a press release. Be clear, direct, conversational and real.
+
+Don't use words like:
+- Seamless
+- Delve
+- Game changing
+- Em dashes
+- Friction
+- Resonates
+- Ownership
+- Cutting corners
