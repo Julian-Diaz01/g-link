@@ -4,7 +4,7 @@
   "title": "Software Developer",
   "greeting": "Hallo! 👋",
   "bio": "Building exceptional web experiences with modern technologies. Transforming ideas into elegant, performant applications.",
-  "bioImpersonal": "Hi, I'm Julian, Software Developer Software Developer focused on mobile-first PWAs and modern web applications using React, Next.js and TypeScript. Experienced in structuring scalable frontend architectures, integrating self-hosted AI services such as OpenAI Whisper and Ollama, and supporting reliable delivery through CI/CD pipelines and cloud-based deployments. Strong emphasis on user-centric design, real-time features, and clean, maintainable code.",
+  "bioImpersonal": "Hi, I'm Julian, Software Developer focused on modern web applications. Experienced in structuring scalable frontend ar-chitectures, from modular monoliths to micro-frontend setups, and in applying SSG and SSR to balance perfor-mance, personalization and dynamic content. Experienced in integrating self-hosted AI services such as OpenAI Whisper and Ollama, and supporting reliable delivery through CI/CD pipelines and cloud-based deployments. Strong emphasis on user-centric design, real-time features, and clean, maintainable code.",
   "location": "Berlin, Germany",
   "email": "judadi1994@gmail.com",
   "website": "https://juliandiaz.web.app/",
