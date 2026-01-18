@@ -1,0 +1,44 @@
+[
+  {
+    "monthYearRange": "May 2025 – Present",
+    "title": "Software Developer",
+    "subTitle": "Konnektaro, Berlin, Germany",
+    "description": "Developed a mobile-first progressive web app for real-time learning sessions using React, Nextjs, and TypeScript. Implemented Firebase Authentication across frontend and backend. Introduced a microfrontend-style architecture to separate core app areas (sessions, auth, analytics) for independent deployment and maintenance. Built RESTful APIs with Nodejs and Express. Designed and integrated modular UI using Tailwind CSS. Structured and maintained a MongoDB database. Integrated a self-hosted speech-to-text service using OpenAI Whisper. Set up CI/CD pipelines (GitHub Actions + Docker)."
+  },
+  {
+    "monthYearRange": "Mar 2024 – Dec 2024",
+    "title": "Founding Engineer | Technical Advisor",
+    "subTitle": "EduEnvire, Copenhagen, Denmark (Remote)",
+    "description": "Led the design of a check-in system allowing students to register attendance while giving teachers real-time insights into device usage. Collaborated with backend engineers to define app architecture and data mapping strategies. Developed frontend for both web and mobile apps using React TS and React Native (Expo). Implemented CI/CD pipelines for the frontend, ensuring smooth alpha testing phases. Mentored founders on technical aspects of starting their business."
+  },
+  {
+    "monthYearRange": "May 2020 – Dec 2023",
+    "title": "Mobile Developer",
+    "subTitle": "Iomoto, Berlin, Germany",
+    "description": "Project: B2C Automotive Sales App (Flutter, Dart) - Built EV simulation tools to compare costs, charging, and mileage with fossil-fueled vehicles. Created the Garage feature synced with commuter habits and developed login flow with focus on accessibility/security. Conducted unit testing for Flutter and contributed to main app maintenance."
+  },
+  {
+    "monthYearRange": "May 2020 – Dec 2023",
+    "title": "Frontend Engineer",
+    "subTitle": "Iomoto, Berlin, Germany",
+    "description": "Project: B2B Truck Fueling & Fleet Management Tool (React, Azure) - Developed platform using React (JavaScript), HTML, CSS with authentication via Azure AD B2C. Ensured fleet management for 5000+ vehicles and delivered white-label solution with CI/CD pipelines. Implemented automated tests (Jest, Cypress) and maintained codebase in GitLab under Agile practices."
+  },
+  {
+    "monthYearRange": "Nov 2019 – Jan 2020",
+    "title": "Frontend Engineer, Intern",
+    "subTitle": "The Key Technology, Germany",
+    "description": ""
+  },
+  {
+    "monthYearRange": "Aug 2017 – Dec 2017",
+    "title": "Multimedia Designer",
+    "subTitle": "Virtual Media Network, Colombia",
+    "description": ""
+  },
+  {
+    "monthYearRange": "Aug 2016 - Jan 2017",
+    "title": "Multimedia Designer, Intern",
+    "subTitle": "Avantel, Colombia",
+    "description": ""
+  }
+]
