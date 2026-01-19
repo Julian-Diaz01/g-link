@@ -48,6 +48,7 @@ export interface Profile {
   title: string
   greeting: string
   bio: string
+  bioImpersonal: string
   location: string
   email: string
   website: string
