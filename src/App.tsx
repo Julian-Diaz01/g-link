@@ -11,6 +11,7 @@ import NotFoundPage from './pages/NotFoundPage.tsx'
 
 // Lazy load routes for code splitting
 const PortfolioDesign = React.lazy(() => import('./pages/PortfolioDesign.tsx'))
+const CVPage = React.lazy(() => import('./pages/CvPage.tsx'))
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -36,6 +37,20 @@ const router = createBrowserRouter(
             }
           >
             <PortfolioDesign />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/cv"
+        element={
+          <Suspense
+            fallback={
+              <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
+                <div className="text-lg">Loading CV...</div>
+              </div>
+            }
+          >
+            <CVPage />
           </Suspense>
         }
       />
