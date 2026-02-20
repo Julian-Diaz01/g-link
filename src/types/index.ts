@@ -42,6 +42,24 @@ export interface SocialLink {
   icon: string
 }
 
+export type ArtifactStatus = 'planned' | 'inProgress' | 'ready'
+
+export interface ArtifactLink {
+  href: string
+  label: string
+  kind?: 'external' | 'yamlDialog' | 'imageDialog'
+}
+
+export interface Artifact {
+  id: string
+  title: string
+  description: string
+  thumbnailAlt: string
+  thumbnailSrc: string
+  links: ArtifactLink[]
+  status?: ArtifactStatus
+}
+
 export interface Profile {
   firstName: string
   lastName: string

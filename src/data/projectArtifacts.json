@@ -1,0 +1,46 @@
+[
+  {
+    "id": "figma-flow",
+    "title": "Product flows + wireframes (Figma)",
+    "description": "User journeys for landlord and tenant, plus MVP screen wireframes.",
+    "thumbnailAlt": "Wireframe preview of the landlord and tenant dashboard flows",
+    "thumbnailSrc": "/artifacts/konnektaro-RES-thumbnail.png",
+    "links": [
+      {
+        "href": "https://www.figma.com/make/WyujU11S6MTpYGPirPZ7hG/Landlord-Tenant-Management-SaaS?t=aKpD0ox9JBs6A9kp-1",
+        "label": "Open Figma"
+      }
+    ],
+    "status": "inProgress"
+  },
+  {
+    "id": "db-erd",
+    "title": "Database ERD (draw.io)",
+    "description": "Tables, relations, and how data is stored (tenancies, ledger, issues, docs).",
+    "thumbnailAlt": "Database entity relationship diagram preview",
+    "thumbnailSrc": "/artifacts/konnektaro-RES.svg",
+    "links": [
+      {
+        "href": "/artifacts/konnektaro-RES.svg",
+        "label": "Open draw.io export",
+        "kind": "imageDialog"
+      }
+    ],
+    "status": "ready"
+  },
+  {
+    "id": "api-docs",
+    "title": "API + Auth design",
+    "description": "Firebase token verification, scoping rules, and endpoints (Swagger once running).",
+    "thumbnailAlt": "API documentation preview image",
+    "thumbnailSrc": "/artifacts/konnektaro-RES-openapi.png",
+    "links": [
+      {
+        "href": "/artifacts/konnektaro-RES-OpenAPI.yaml",
+        "label": "Open OpenAPI YAML",
+        "kind": "yamlDialog"
+      }
+    ],
+    "status": "planned"
+  }
+]

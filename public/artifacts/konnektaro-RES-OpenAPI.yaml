@@ -1,0 +1,1063 @@
+openapi: 3.0.3
+info:
+  title: Konnektaro RES API
+  version: 1.0.0
+  description: Backend API contract for frontend integration. RES = Real Estate Software
+
+servers:
+  - url: http://localhost:3300
+
+tags:
+  - name: health
+  - name: users
+  - name: properties
+  - name: tenancies
+  - name: rent
+  - name: ledger
+  - name: issues
+
+security:
+  - bearerAuth: []
+
+paths:
+  /health:
+    get:
+      tags: [health]
+      security: []
+      summary: Health check
+      responses:
+        '200':
+          description: OK
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/HealthResponse'
+
+  /ready:
+    get:
+      tags: [health]
+      security: []
+      summary: Readiness check
+      responses:
+        '200':
+          description: Ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadyResponse'
+        '503':
+          description: Not ready
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ReadyResponse'
+
+  /api/v1/me:
+    get:
+      tags: [users]
+      summary: Get current user
+      responses:
+        '200':
+          description: Current user profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeResponse'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    patch:
+      tags: [users]
+      summary: Update current user profile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateMeInput'
+      responses:
+        '200':
+          description: Updated profile
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/MeResponse'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+
+  /api/v1/users:
+    get:
+      tags: [users]
+      summary: List users
+      responses:
+        '200':
+          description: Users list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/UserSummary'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /api/v1/users/{id}/role:
+    patch:
+      tags: [users]
+      summary: Update user role
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateUserRoleInput'
+      responses:
+        '200':
+          description: Updated user
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/UserSummary'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /api/v1/properties:
+    get:
+      tags: [properties]
+      summary: List properties
+      responses:
+        '200':
+          description: Properties list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/PropertyWithUnits'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+    post:
+      tags: [properties]
+      summary: Create property
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreatePropertyInput'
+      responses:
+        '200':
+          description: Property created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyWithUnits'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /api/v1/properties/{id}:
+    get:
+      tags: [properties]
+      summary: Get property by id
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Property
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PropertyWithUnits'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /api/v1/properties/{id}/units:
+    get:
+      tags: [properties]
+      summary: List units for property
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Units list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Unit'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+    post:
+      tags: [properties]
+      summary: Create unit
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateUnitInput'
+      responses:
+        '200':
+          description: Unit created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Unit'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /api/v1/tenancies:
+    get:
+      tags: [tenancies]
+      summary: List tenancies
+      responses:
+        '200':
+          description: Tenancies list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Tenancy'
+    post:
+      tags: [tenancies]
+      summary: Create tenancy
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateTenancyInput'
+      responses:
+        '200':
+          description: Tenancy created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenancy'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /api/v1/tenancies/{id}:
+    get:
+      tags: [tenancies]
+      summary: Get tenancy by id
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Tenancy
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenancy'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /api/v1/tenancies/{id}/end:
+    patch:
+      tags: [tenancies]
+      summary: End tenancy
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/EndTenancyInput'
+      responses:
+        '200':
+          description: Tenancy ended
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Tenancy'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /api/v1/tenancies/{tenancyId}/rent-terms:
+    get:
+      tags: [rent]
+      summary: List rent terms
+      parameters:
+        - $ref: '#/components/parameters/TenancyIdParam'
+      responses:
+        '200':
+          description: Rent terms list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/RentTerm'
+    post:
+      tags: [rent]
+      summary: Create rent term
+      parameters:
+        - $ref: '#/components/parameters/TenancyIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateRentTermInput'
+      responses:
+        '200':
+          description: Rent term created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/RentTerm'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /api/v1/tenancies/{tenancyId}/ledger-entries:
+    get:
+      tags: [ledger]
+      summary: List ledger entries
+      parameters:
+        - $ref: '#/components/parameters/TenancyIdParam'
+        - in: query
+          name: from
+          schema:
+            type: string
+            format: date
+        - in: query
+          name: to
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Ledger entries list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/LedgerEntry'
+    post:
+      tags: [ledger]
+      summary: Create ledger entry
+      parameters:
+        - $ref: '#/components/parameters/TenancyIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateLedgerEntryInput'
+      responses:
+        '200':
+          description: Ledger entry created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerEntry'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /api/v1/tenancies/{tenancyId}/balance:
+    get:
+      tags: [ledger]
+      summary: Get tenancy balance
+      parameters:
+        - $ref: '#/components/parameters/TenancyIdParam'
+        - in: query
+          name: asOf
+          schema:
+            type: string
+            format: date
+      responses:
+        '200':
+          description: Balance snapshot
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TenancyBalance'
+
+  /api/v1/ledger-entries/{id}/reverse:
+    post:
+      tags: [ledger]
+      summary: Reverse ledger entry
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Reversal entry created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/LedgerEntry'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /api/v1/tenancies/{tenancyId}/issues:
+    get:
+      tags: [issues]
+      summary: List issues
+      parameters:
+        - $ref: '#/components/parameters/TenancyIdParam'
+        - in: query
+          name: status
+          schema:
+            $ref: '#/components/schemas/IssueStatus'
+      responses:
+        '200':
+          description: Issues list
+          content:
+            application/json:
+              schema:
+                type: array
+                items:
+                  $ref: '#/components/schemas/Issue'
+    post:
+      tags: [issues]
+      summary: Create issue
+      parameters:
+        - $ref: '#/components/parameters/TenancyIdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIssueInput'
+      responses:
+        '200':
+          description: Issue created
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+
+  /api/v1/issues/{id}:
+    get:
+      tags: [issues]
+      summary: Get issue by id
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      responses:
+        '200':
+          description: Issue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /api/v1/issues/{id}/events:
+    post:
+      tags: [issues]
+      summary: Add issue event
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/CreateIssueEventInput'
+      responses:
+        '200':
+          description: Updated issue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+  /api/v1/issues/{id}/status:
+    patch:
+      tags: [issues]
+      summary: Update issue status
+      parameters:
+        - $ref: '#/components/parameters/IdParam'
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/UpdateIssueStatusInput'
+      responses:
+        '200':
+          description: Updated issue
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Issue'
+        '400':
+          $ref: '#/components/responses/ValidationError'
+        '401':
+          $ref: '#/components/responses/UnauthorizedError'
+        '403':
+          $ref: '#/components/responses/ForbiddenError'
+        '404':
+          $ref: '#/components/responses/NotFoundError'
+
+components:
+  securitySchemes:
+    bearerAuth:
+      type: http
+      scheme: bearer
+      bearerFormat: JWT
+
+  parameters:
+    IdParam:
+      in: path
+      name: id
+      required: true
+      schema:
+        type: string
+    TenancyIdParam:
+      in: path
+      name: tenancyId
+      required: true
+      schema:
+        type: string
+
+  responses:
+    ValidationError:
+      description: Request validation failed
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ValidationError'
+    UnauthorizedError:
+      description: Unauthorized
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    ForbiddenError:
+      description: Forbidden
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+    NotFoundError:
+      description: Not found
+      content:
+        application/json:
+          schema:
+            $ref: '#/components/schemas/ErrorResponse'
+
+  schemas:
+    UserRole:
+      type: string
+      enum: [LANDLORD, TENANT, ADMIN]
+    UserStatus:
+      type: string
+      enum: [ACTIVE, DISABLED]
+    TenancyStatus:
+      type: string
+      enum: [ACTIVE, ENDED]
+    LedgerEntryType:
+      type: string
+      enum: [CHARGE, PAYMENT, ADJUSTMENT, CREDIT]
+    LedgerCategory:
+      type: string
+      enum:
+        [
+          RENT,
+          OPERATING_ADVANCE,
+          HEATING_ADVANCE,
+          UTILITY_SETTLEMENT,
+          LATE_FEE,
+          OTHER,
+        ]
+    IssueSeverity:
+      type: string
+      enum: [LOW, MEDIUM, HIGH]
+    IssueStatus:
+      type: string
+      enum: [OPEN, IN_PROGRESS, RESOLVED, CLOSED]
+    IssueEventType:
+      type: string
+      enum: [CREATED, COMMENT, STATUS_CHANGED, RESOLVED, CLOSED, REOPENED]
+
+    ErrorResponse:
+      type: object
+      properties:
+        code:
+          type: string
+        message:
+          type: string
+      additionalProperties: true
+
+    ValidationError:
+      type: object
+      properties:
+        code:
+          type: string
+          example: VALIDATION_ERROR
+        message:
+          type: string
+          example: Validation failed
+        details:
+          type: array
+          items:
+            type: object
+            properties:
+              path:
+                type: string
+              message:
+                type: string
+
+    HealthResponse:
+      type: object
+      required: [status, timestamp]
+      properties:
+        status:
+          type: string
+          example: ok
+        timestamp:
+          type: string
+          format: date-time
+
+    ReadyResponse:
+      type: object
+      required: [status, database, redis]
+      properties:
+        status:
+          type: string
+          enum: [ready, not ready]
+        database:
+          type: string
+          enum: [ok, error]
+        redis:
+          type: string
+          enum: [ok, error]
+
+    MeResponse:
+      type: object
+      required: [id, email, role, status]
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        role:
+          $ref: '#/components/schemas/UserRole'
+        status:
+          $ref: '#/components/schemas/UserStatus'
+
+    UserSummary:
+      type: object
+      required: [id, email, role, status]
+      properties:
+        id:
+          type: string
+        email:
+          type: string
+          format: email
+        role:
+          $ref: '#/components/schemas/UserRole'
+        status:
+          $ref: '#/components/schemas/UserStatus'
+
+    UpdateMeInput:
+      type: object
+      properties:
+        phone:
+          type: string
+        displayName:
+          type: string
+        fullName:
+          type: string
+
+    UpdateUserRoleInput:
+      type: object
+      required: [role]
+      properties:
+        role:
+          $ref: '#/components/schemas/UserRole'
+
+    CreatePropertyInput:
+      type: object
+      required: [name, addressLine1, postalCode]
+      properties:
+        name:
+          type: string
+        addressLine1:
+          type: string
+        postalCode:
+          type: string
+        city:
+          type: string
+          default: Berlin
+
+    CreateUnitInput:
+      type: object
+      required: [unitLabel]
+      properties:
+        unitLabel:
+          type: string
+        sizeSqm:
+          type: number
+        rooms:
+          type: number
+
+    CreateTenancyInput:
+      type: object
+      required: [unitId, startDate]
+      properties:
+        unitId:
+          type: string
+          format: uuid
+        tenantFirebaseUid:
+          type: string
+        tenantEmail:
+          type: string
+          format: email
+        startDate:
+          type: string
+          format: date
+      description: At least one of tenantFirebaseUid or tenantEmail is required.
+
+    EndTenancyInput:
+      type: object
+      required: [endDate]
+      properties:
+        endDate:
+          type: string
+          format: date
+
+    CreateRentTermInput:
+      type: object
+      required:
+        [validFrom, coldRentCents, operatingAdvanceCents, heatingAdvanceCents]
+      properties:
+        validFrom:
+          type: string
+          format: date
+        coldRentCents:
+          type: integer
+        operatingAdvanceCents:
+          type: integer
+        heatingAdvanceCents:
+          type: integer
+        currency:
+          type: string
+          default: EUR
+        notes:
+          type: string
+
+    CreateLedgerEntryInput:
+      type: object
+      required: [entryType, category, amountCents, effectiveDate, description]
+      properties:
+        entryType:
+          $ref: '#/components/schemas/LedgerEntryType'
+        category:
+          $ref: '#/components/schemas/LedgerCategory'
+        amountCents:
+          type: integer
+        effectiveDate:
+          type: string
+          format: date
+        description:
+          type: string
+
+    CreateIssueInput:
+      type: object
+      required: [title, description, severity]
+      properties:
+        title:
+          type: string
+        description:
+          type: string
+        severity:
+          $ref: '#/components/schemas/IssueSeverity'
+
+    CreateIssueEventInput:
+      type: object
+      required: [type]
+      properties:
+        type:
+          type: string
+          enum: [COMMENT, STATUS_CHANGED, RESOLVED, CLOSED, REOPENED]
+        message:
+          type: string
+        toStatus:
+          $ref: '#/components/schemas/IssueStatus'
+
+    UpdateIssueStatusInput:
+      type: object
+      required: [status]
+      properties:
+        status:
+          $ref: '#/components/schemas/IssueStatus'
+
+    Property:
+      type: object
+      properties:
+        id:
+          type: string
+        landlordId:
+          type: string
+        name:
+          type: string
+        addressLine1:
+          type: string
+        postalCode:
+          type: string
+        city:
+          type: string
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    Unit:
+      type: object
+      properties:
+        id:
+          type: string
+        propertyId:
+          type: string
+        unitLabel:
+          type: string
+        sizeSqm:
+          type: number
+          nullable: true
+        rooms:
+          type: number
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    PropertyWithUnits:
+      allOf:
+        - $ref: '#/components/schemas/Property'
+        - type: object
+          properties:
+            units:
+              type: array
+              items:
+                $ref: '#/components/schemas/Unit'
+
+    Tenancy:
+      type: object
+      properties:
+        id:
+          type: string
+        unitId:
+          type: string
+        landlordId:
+          type: string
+        tenantUserId:
+          type: string
+          nullable: true
+        startDate:
+          type: string
+          format: date-time
+        endDate:
+          type: string
+          format: date-time
+          nullable: true
+        status:
+          $ref: '#/components/schemas/TenancyStatus'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    RentTerm:
+      type: object
+      properties:
+        id:
+          type: string
+        tenancyId:
+          type: string
+        validFrom:
+          type: string
+          format: date-time
+        coldRentCents:
+          type: integer
+        operatingAdvanceCents:
+          type: integer
+        heatingAdvanceCents:
+          type: integer
+        currency:
+          type: string
+        notes:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+
+    LedgerEntry:
+      type: object
+      properties:
+        id:
+          type: string
+        tenancyId:
+          type: string
+        landlordId:
+          type: string
+        createdByUserId:
+          type: string
+        entryType:
+          $ref: '#/components/schemas/LedgerEntryType'
+        category:
+          $ref: '#/components/schemas/LedgerCategory'
+        amountCents:
+          type: integer
+        effectiveDate:
+          type: string
+          format: date-time
+        description:
+          type: string
+        referenceEntryId:
+          type: string
+          nullable: true
+        createdAt:
+          type: string
+          format: date-time
+
+    TenancyBalance:
+      type: object
+      properties:
+        tenancyId:
+          type: string
+        balanceCents:
+          type: integer
+        asOf:
+          type: string
+          format: date
+
+    IssueEvent:
+      type: object
+      properties:
+        id:
+          type: string
+        issueId:
+          type: string
+        actorUserId:
+          type: string
+        type:
+          $ref: '#/components/schemas/IssueEventType'
+        message:
+          type: string
+          nullable: true
+        fromStatus:
+          $ref: '#/components/schemas/IssueStatus'
+        toStatus:
+          $ref: '#/components/schemas/IssueStatus'
+        createdAt:
+          type: string
+          format: date-time
+
+    Issue:
+      type: object
+      properties:
+        id:
+          type: string
+        tenancyId:
+          type: string
+        landlordId:
+          type: string
+        createdByUserId:
+          type: string
+        title:
+          type: string
+        description:
+          type: string
+        severity:
+          $ref: '#/components/schemas/IssueSeverity'
+        status:
+          $ref: '#/components/schemas/IssueStatus'
+        createdAt:
+          type: string
+          format: date-time
+        updatedAt:
+          type: string
+          format: date-time
+        events:
+          type: array
+          items:
+            $ref: '#/components/schemas/IssueEvent'

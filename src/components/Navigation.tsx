@@ -26,7 +26,9 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
     { href: '#services', label: 'Services' },
     { href: '#experience', label: 'Experience' },
     { href: '#education', label: 'Education' },
+    { href: '#languages', label: 'Languages' },
     { href: '#contact', label: 'Contact' },
+    { href: '#progress', label: 'Progress' },
   ]
 
   return (

@@ -1,6 +1,6 @@
 import React, { Suspense, useMemo, useEffect } from 'react'
 import { ThemeProvider } from '../context/ThemeContext'
-import { Profile, Job, Education, Service } from '../types'
+import { Profile, Job, Education, Service, Artifact, Language } from '../types'
 import SEO from '../components/SEO'
 import {
   generateComprehensiveProfileSchema,
@@ -16,14 +16,19 @@ const Hero = React.lazy(() => import('../components/Hero'))
 const Services = React.lazy(() => import('../components/Services'))
 const Experience = React.lazy(() => import('../components/Experience'))
 const EducationSection = React.lazy(() => import('../components/Education'))
+const Languages = React.lazy(() => import('../components/Languages.tsx'))
 const Contact = React.lazy(() => import('../components/Contact'))
 const ContactPopup = React.lazy(() => import('../components/ContactPopup'))
+const ProjectArtifacts = React.lazy(
+  () => import('../components/ProjectArtifacts'),
+)
 
 // Import JSON data
 import profileData from '../data/profile.json'
 import servicesData from '../data/services.json'
 import jobsData from '../data/jobs.json'
 import educationData from '../data/education.json'
+import artifactsData from '../data/projectArtifacts.json'
 
 const PortfolioDesign: React.FC = () => {
   // Type assertions for JSON imports
@@ -31,6 +36,24 @@ const PortfolioDesign: React.FC = () => {
   const services = servicesData as Service[]
   const jobs = jobsData as Job[]
   const education = educationData as Education[]
+  const artifacts = artifactsData as Artifact[]
+  const languages: Language[] = [
+    {
+      name: 'Spanish',
+      description: 'Native',
+      chips: ['C2'],
+    },
+    {
+      name: 'English',
+      description: 'Native',
+      chips: ['C2'],
+    },
+    {
+      name: 'German',
+      description: 'Intermediate',
+      chips: ['B1'],
+    },
+  ]
 
   // Generate structured data for AI search engines
   const structuredData = useMemo(() => {
@@ -131,6 +154,8 @@ const PortfolioDesign: React.FC = () => {
           <Services services={services} />
           <Experience jobs={jobs} />
           <EducationSection education={education} />
+          <Languages languages={languages} />
+          <ProjectArtifacts artifacts={artifacts} />
           <Contact profile={profile} />
           <ContactPopup />
         </Suspense>
