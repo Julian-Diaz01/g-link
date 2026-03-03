@@ -1,27 +1,27 @@
 [
   {
-    "monthYearRange": "May 2025 – Present",
+    "monthYearRange": "May 2025 – Dec 2025",
     "title": "Software Developer",
     "subTitle": "Konnektaro, Berlin, Germany",
-    "description": "Developed a mobile-first progressive web app for real-time learning sessions using React, Nextjs, and TypeScript. Implemented Firebase Authentication across frontend and backend. Introduced a microfrontend-style architecture to separate core app areas (sessions, auth, analytics) for independent deployment and maintenance. Built RESTful APIs with Nodejs and Express. Designed and integrated modular UI using Tailwind CSS. Structured and maintained a MongoDB database. Integrated a self-hosted speech-to-text service using OpenAI Whisper. Set up CI/CD pipelines (GitHub Actions + Docker)."
+    "description": "Improved initial page load performance by 35% by implementing a hybrid SSR/SSG architecture in Next.js and TypeScript for a real-time learning platform. Increased deployment reliability by implementing CI/CD pipelines (GitHub Actions + Docker). Reduced feature coupling by restructuring the frontend into a modular microfrontend-style architecture for sessions, authentication, and analytics. Delivered real-time transcription during live sessions by integrating a self-hosted OpenAI Whisper service via a custom API layer. Secured authentication workflows with Firebase Authentication and robust token validation across frontend and backend. Increased backend scalability by designing RESTful APIs with Node.js and Express and optimizing MongoDB schemas. Improved UI consistency with reusable Tailwind CSS components and clean architecture standards."
   },
   {
     "monthYearRange": "Mar 2024 – Dec 2024",
     "title": "Founding Engineer | Technical Advisor",
     "subTitle": "EduEnvire, Copenhagen, Denmark (Remote)",
-    "description": "Led the design of a check-in system allowing students to register attendance while giving teachers real-time insights into device usage. Collaborated with backend engineers to define app architecture and data mapping strategies. Developed frontend for both web and mobile apps using React TS and React Native (Expo). Implemented CI/CD pipelines for the frontend, ensuring smooth alpha testing phases. Mentored founders on technical aspects of starting their business."
+    "description": "Accelerated MVP delivery timeline by 30% by architecting a scalable React and TypeScript frontend aligned with Agile iteration principles. Enabled real-time operational insights for educators by designing dashboards that processed and visualized attendance and device-usage data. Improved release velocity during alpha testing by implementing CI/CD workflows and automated validation checks for frontend builds. Increased usability and early adoption by translating complex requirements into intuitive UX/UI flows for web and mobile using React Native (Expo)."
   },
   {
     "monthYearRange": "May 2020 – Dec 2023",
     "title": "Mobile Developer",
-    "subTitle": "Iomoto, Berlin, Germany",
-    "description": "Project: B2C Automotive Sales App (Flutter, Dart) - Built EV simulation tools to compare costs, charging, and mileage with fossil-fueled vehicles. Created the Garage feature synced with commuter habits and developed login flow with focus on accessibility/security. Conducted unit testing for Flutter and contributed to main app maintenance."
+    "subTitle": "Iomoto (ZF Group), Berlin, Germany",
+    "description": "Project: B2C Automotive Sales App (Flutter, Dart). Enhanced customer decision-making by building EV simulation tools to compare charging, mileage, and total cost of ownership against fossil-fueled vehicles. Improved user engagement and accessibility by developing the Garage feature synchronized with commuter habits."
   },
   {
     "monthYearRange": "May 2020 – Dec 2023",
     "title": "Frontend Engineer",
-    "subTitle": "Iomoto, Berlin, Germany",
-    "description": "Project: B2B Truck Fueling & Fleet Management Tool (React, Azure) - Developed platform using React (JavaScript), HTML, CSS with authentication via Azure AD B2C. Ensured fleet management for 5000+ vehicles and delivered white-label solution with CI/CD pipelines. Implemented automated tests (Jest, Cypress) and maintained codebase in GitLab under Agile practices."
+    "subTitle": "Iomoto (ZF Group), Berlin, Germany",
+    "description": "Project: B2B Truck Fueling & Fleet Management SaaS (React, Azure). Delivered an enterprise fleet management platform used across 5,000+ vehicles using scalable React applications with Azure AD B2C authentication. Improved operational decision-making with performance-optimized data visualizations for large fueling, mileage, and cost datasets using React and Chart.js. Enhanced analytics capabilities by building interactive dashboards that processed high-volume fleet data. Increased release confidence with automated testing strategies reaching 80% business-logic coverage (Jest) and 70% end-to-end coverage (Cypress) integrated into GitLab CI pipelines. Enabled white-label deployments through configurable branding and modular feature management in an Agile and DevOps environment."
   },
   {
     "monthYearRange": "Nov 2019 – Jan 2020",
