@@ -1,13 +1,13 @@
 [
   {
     "monthYearRange": "May 2025 – Dec 2025",
-    "title": "Software Developer",
+    "title": "Frontend Developer",
     "subTitle": "Konnektaro, Berlin, Germany",
     "description": "Improved initial page load performance by 35% by implementing a hybrid SSR/SSG architecture in Next.js and TypeScript for a real-time learning platform. Increased deployment reliability by implementing CI/CD pipelines (GitHub Actions + Docker). Reduced feature coupling by restructuring the frontend into a modular microfrontend-style architecture for sessions, authentication, and analytics. Delivered real-time transcription during live sessions by integrating a self-hosted OpenAI Whisper service via a custom API layer. Secured authentication workflows with Firebase Authentication and robust token validation across frontend and backend. Increased backend scalability by designing RESTful APIs with Node.js and Express and optimizing MongoDB schemas. Improved UI consistency with reusable Tailwind CSS components and clean architecture standards."
   },
   {
     "monthYearRange": "Mar 2024 – Dec 2024",
-    "title": "Founding Engineer | Technical Advisor",
+    "title": "Frontend Engineer | Technical Advisor",
     "subTitle": "EduEnvire, Copenhagen, Denmark (Remote)",
     "description": "Accelerated MVP delivery timeline by 30% by architecting a scalable React and TypeScript frontend aligned with Agile iteration principles. Enabled real-time operational insights for educators by designing dashboards that processed and visualized attendance and device-usage data. Improved release velocity during alpha testing by implementing CI/CD workflows and automated validation checks for frontend builds. Increased usability and early adoption by translating complex requirements into intuitive UX/UI flows for web and mobile using React Native (Expo)."
   },
