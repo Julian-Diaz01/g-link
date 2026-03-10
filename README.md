@@ -1,6 +1,6 @@
 # G-Link Portfolio
 
-A modern, interactive portfolio website showcasing my professional experience, projects, and skills as a software developer.
+A modern, interactive portfolio website showcasing my professional experience, projects, and skills as a frontend Engineer.
 
 ## 🚀 Features
 

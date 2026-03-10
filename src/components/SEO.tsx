@@ -22,14 +22,14 @@ interface SEOProps {
 }
 
 const SEO: React.FC<SEOProps> = ({
-  title = 'Julian Diaz - Software Developer Portfolio',
+  title = 'Julian Diaz - Frontend Engineer Portfolio',
   description = 'Building exceptional web experiences with modern technologies. Transforming ideas into elegant, performant applications.',
-  keywords = 'Software Developer, Web Developer, React, TypeScript, JavaScript, Berlin, Full Stack Developer, Frontend Developer',
+  keywords = 'frontend Engineer, Web Developer, React, TypeScript, JavaScript, Berlin, Full Stack Developer, Frontend Developer',
   author = 'Julian Diaz',
   ogTitle,
   ogDescription,
   ogImage = 'https://juliandiaz.web.app/og-image.jpg',
-  ogImageAlt = 'Julian Diaz - Software Developer Portfolio',
+  ogImageAlt = 'Julian Diaz - frontend Engineer Portfolio',
   ogUrl = 'https://juliandiaz.web.app/',
   ogType = 'website',
   twitterCard = 'summary_large_image',
@@ -46,7 +46,7 @@ const SEO: React.FC<SEOProps> = ({
     '@context': 'https://schema.org',
     '@type': 'Person',
     name: 'Julian Diaz',
-    jobTitle: 'Software Developer',
+    jobTitle: 'Frontend Engineer',
     url: 'https://juliandiaz.web.app/',
     address: {
       '@type': 'PostalAddress',
@@ -185,7 +185,7 @@ const SEO: React.FC<SEOProps> = ({
       />
       <meta
         name="AI:entity"
-        content="Julian Diaz, Software Developer, Berlin"
+        content="Julian Diaz, Frontend Engineer, Berlin"
       />
 
       {/* Semantic Meta Tags for AI Comprehension */}

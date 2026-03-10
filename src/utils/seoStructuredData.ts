@@ -271,7 +271,7 @@ export const generateComprehensiveProfileSchema = (
     mainEntity: {
       '@type': 'Person',
       name: 'Julian Diaz',
-      jobTitle: 'Software Developer',
+      jobTitle: 'Frontend Engineer',
       url: 'https://juliandiaz.web.app/',
       address: {
         '@type': 'PostalAddress',

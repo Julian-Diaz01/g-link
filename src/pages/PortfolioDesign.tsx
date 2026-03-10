@@ -61,7 +61,7 @@ const PortfolioDesign: React.FC = () => {
     const faqs = [
       {
         question: 'Who is Julian Diaz?',
-        answer: `Julian Diaz is a Software Developer based in Berlin, Germany with ${profile.yearsOfExperience}+ years of experience in web development, specializing in React, TypeScript, Next.js, and modern web technologies.`,
+        answer: `Julian Diaz is a frontend Engineer based in Berlin, Germany with ${profile.yearsOfExperience}+ years of experience in web development, specializing in React, TypeScript, Next.js, and modern web technologies.`,
       },
       {
         question: 'What technologies does Julian Diaz work with?',
@@ -134,7 +134,7 @@ const PortfolioDesign: React.FC = () => {
       <SEO
         title={`${profile.firstName} ${profile.lastName} - ${profile.title}`}
         description={profile.bio}
-        keywords="Software Developer, Web Developer, React, TypeScript, JavaScript, Berlin, Full Stack Developer, Frontend Developer, Julian Diaz, Next.js, Node.js, Mobile Development"
+        keywords="Frontend Engineer, Web Developer, React, TypeScript, JavaScript, Berlin, Full Stack Developer, Frontend Developer, Julian Diaz, Next.js, Node.js, Mobile Development"
         author={`${profile.firstName} ${profile.lastName}`}
         ogUrl={profile.website}
         canonicalUrl={profile.website}
