@@ -183,10 +183,7 @@ const SEO: React.FC<SEOProps> = ({
         name="AI:category"
         content="Portfolio, Professional Services, Technology"
       />
-      <meta
-        name="AI:entity"
-        content="Julian Diaz, Frontend Engineer, Berlin"
-      />
+      <meta name="AI:entity" content="Julian Diaz, Frontend Engineer, Berlin" />
 
       {/* Semantic Meta Tags for AI Comprehension */}
       <meta property="profile:first_name" content="Julian" />
