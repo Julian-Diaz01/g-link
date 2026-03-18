@@ -1,16 +1,33 @@
 import * as Sentry from '@sentry/react'
 
 export const initSentry = () => {
+  const isDev = import.meta.env.DEV
+  const isProd = import.meta.env.PROD
+
   const dsn = import.meta.env.VITE_SENTRY_DSN
+  const environment =
+    import.meta.env.VITE_SENTRY_ENV ??
+    (isProd ? 'production' : isDev ? 'development' : import.meta.env.MODE)
+
+  const enableInDev = import.meta.env.VITE_SENTRY_ENABLE_IN_DEV === 'true'
 
   if (!dsn) {
     console.warn('Sentry DSN not found. Error tracking is disabled.')
     return
   }
 
+  if (isDev && !enableInDev) {
+    console.warn(
+      'Sentry is disabled in development. Set VITE_SENTRY_ENABLE_IN_DEV=true to enable.',
+    )
+    return
+  }
+
   Sentry.init({
     dsn,
-    enableLogs: true,
+    environment,
+    enabled: isProd || enableInDev,
+    enableLogs: isDev,
     integrations: [
       Sentry.consoleLoggingIntegration({ levels: ['log', 'warn', 'error'] }),
       Sentry.browserTracingIntegration(),
@@ -20,10 +37,10 @@ export const initSentry = () => {
       }),
     ],
     // Performance Monitoring
-    tracesSampleRate: 1.0,
+    tracesSampleRate: isProd ? 1.0 : 0.0,
     // Session Replay
-    replaysSessionSampleRate: 0.1, // 10% of sessions
-    replaysOnErrorSampleRate: 1.0, // 100% of sessions with errors
+    replaysSessionSampleRate: isProd ? 0.1 : 0.0, // 10% of sessions
+    replaysOnErrorSampleRate: isProd ? 1.0 : 0.0, // 100% of sessions with errors
   })
 }
 
