@@ -87,14 +87,14 @@ const Hero: React.FC<HeroProps> = ({ profile }) => {
                 href="#experience"
                 className="group bg-gradient-to-r from-orange-500 to-orange-600 text-white px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium hover:shadow-lg hover:scale-105 transition-all flex items-center justify-center gap-2 text-sm sm:text-base"
               >
-                Portfolio
+                Experience
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
               </a>
               <a
-                href="#contact"
+                href="/projects"
                 className="border-2 border-orange-500 dark:border-orange-400 text-orange-500 dark:text-orange-400 px-6 sm:px-8 py-2.5 sm:py-3 rounded-full font-medium hover:bg-orange-50 dark:hover:bg-orange-900/30 transition text-sm sm:text-base text-center"
               >
-                Contact Me
+                Projects
               </a>
             </div>
           </div>

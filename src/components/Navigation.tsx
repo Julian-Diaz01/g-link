@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, NavLink } from 'react-router-dom'
 import { Menu, X } from 'lucide-react'
 import { Profile } from '../types'
 import DarkModeToggle from './DarkModeToggle'
@@ -7,9 +7,13 @@ import { trackMetric } from '../utils/sentry'
 
 interface NavigationProps {
   profile: Profile
+  variant?: 'default' | 'experiment'
 }
 
-const Navigation: React.FC<NavigationProps> = ({ profile }) => {
+const Navigation: React.FC<NavigationProps> = ({
+  profile,
+  variant = 'default',
+}) => {
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false)
   const initials = `${profile.firstName[0]}${profile.lastName[0]}`
 
@@ -22,17 +26,41 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
   }
 
   const navLinks = [
-    { href: '#home', label: 'Home', isActive: true },
-    { href: '#services', label: 'Services' },
-    { href: '#experience', label: 'Experience' },
-    { href: '#education', label: 'Education' },
-    { href: '#languages', label: 'Languages' },
-    { href: '#contact', label: 'Contact' },
-    { href: '#progress', label: 'Progress' },
+    { to: '/', label: 'Home' },
+    { to: '/projects', label: 'Projects' },
+    { to: '/experiment', label: 'Experiment' },
   ]
 
+  const linkClass =
+    'text-slate-600 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-400 transition text-sm xl:text-base'
+  const activeLinkClass = 'text-orange-500 dark:text-orange-400 font-medium'
+  const isExperiment = variant === 'experiment'
+
+  const navClass = isExperiment
+    ? 'fixed top-0 left-0 right-0 z-50 bg-slate-950/45 backdrop-blur-xl border-b border-cyan-400/20 shadow-[0_0_30px_rgba(6,182,212,0.15)]'
+    : 'fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700'
+
+  const themedLinkClass = isExperiment
+    ? 'text-slate-200/90 hover:text-cyan-300 transition text-sm xl:text-base'
+    : linkClass
+  const themedActiveLinkClass = isExperiment
+    ? 'text-cyan-300 font-medium'
+    : activeLinkClass
+  const logoBadgeClass = isExperiment
+    ? 'w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-cyan-400 to-fuchsia-500 flex items-center justify-center text-slate-950 font-bold text-sm sm:text-base shadow-[0_0_20px_rgba(34,211,238,0.5)]'
+    : 'w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-bold text-sm sm:text-base'
+  const logoTextClass = isExperiment
+    ? 'font-bold text-lg sm:text-xl text-slate-100 tracking-wide'
+    : 'font-bold text-lg sm:text-xl text-slate-900 dark:text-white'
+  const mobileButtonClass = isExperiment
+    ? 'p-2 text-slate-200 hover:text-cyan-300 transition'
+    : 'p-2 text-slate-600 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-400 transition'
+  const mobileMenuClass = isExperiment
+    ? 'lg:hidden mt-4 pb-4 border-t border-cyan-400/20'
+    : 'lg:hidden mt-4 pb-4 border-t border-slate-200 dark:border-slate-700'
+
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-slate-200 dark:border-slate-700">
+    <nav className={navClass}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
         <div className="flex items-center justify-between">
           <Link
@@ -40,10 +68,8 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
             className="flex items-center gap-2"
             onClick={closeMobileMenu}
           >
-            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-full bg-gradient-to-br from-orange-400 to-orange-600 flex items-center justify-center text-white font-bold text-sm sm:text-base">
-              {initials}
-            </div>
-            <span className="font-bold text-lg sm:text-xl text-slate-900 dark:text-white">
+            <div className={logoBadgeClass}>{initials}</div>
+            <span className={logoTextClass}>
               {profile.firstName.toUpperCase()}
             </span>
           </Link>
@@ -51,20 +77,20 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
           {/* Desktop Navigation */}
           <div className="hidden lg:flex items-center gap-6 xl:gap-8">
             {navLinks.map((link) => (
-              <a
-                key={link.href}
-                href={link.href}
-                className={`${
-                  link.isActive
-                    ? 'text-orange-500 dark:text-orange-400 font-medium'
-                    : 'text-slate-600 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-400'
-                } transition text-sm xl:text-base`}
+              <NavLink
+                key={link.to}
+                to={link.to}
+                className={({ isActive }) =>
+                  isActive
+                    ? `${themedLinkClass} ${themedActiveLinkClass}`
+                    : themedLinkClass
+                }
               >
                 {link.label}
-              </a>
+              </NavLink>
             ))}
             <a
-              className="text-slate-600 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-400 transition text-sm xl:text-base"
+              className={themedLinkClass}
               href="/julian_diaz_cv.pdf"
               target="_blank"
               rel="noopener noreferrer"
@@ -84,7 +110,7 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
             <DarkModeToggle />
             <button
               onClick={toggleMobileMenu}
-              className="p-2 text-slate-600 dark:text-slate-300 hover:text-orange-500 dark:hover:text-orange-400 transition"
+              className={mobileButtonClass}
               aria-label="Toggle menu"
             >
               {isMobileMenuOpen ? (
@@ -98,24 +124,24 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
 
         {/* Mobile Menu */}
         {isMobileMenuOpen && (
-          <div className="lg:hidden mt-4 pb-4 border-t border-slate-200 dark:border-slate-700">
+          <div className={mobileMenuClass}>
             <div className="flex flex-col gap-4 pt-4">
               {navLinks.map((link) => (
-                <a
-                  key={link.href}
-                  href={link.href}
+                <NavLink
+                  key={link.to}
+                  to={link.to}
                   onClick={closeMobileMenu}
-                  className={`${
-                    link.isActive
-                      ? 'text-orange-500 dark:text-orange-400 font-medium'
-                      : 'text-slate-600 dark:text-slate-300'
-                  } transition py-2`}
+                  className={({ isActive }) =>
+                    isActive
+                      ? `${themedLinkClass} ${themedActiveLinkClass} py-2`
+                      : `${themedLinkClass} py-2`
+                  }
                 >
                   {link.label}
-                </a>
+                </NavLink>
               ))}
               <a
-                className="text-slate-600 dark:text-slate-300 py-2"
+                className={`${themedLinkClass} py-2`}
                 href="/julian_diaz_cv.pdf"
                 target="_blank"
                 rel="noopener noreferrer"
@@ -128,13 +154,6 @@ const Navigation: React.FC<NavigationProps> = ({ profile }) => {
               >
                 CV
               </a>
-              <Link
-                to="/home"
-                className="text-slate-600 dark:text-slate-300 py-2"
-                onClick={closeMobileMenu}
-              >
-                v1
-              </Link>
             </div>
           </div>
         )}

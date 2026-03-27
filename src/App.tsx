@@ -10,8 +10,10 @@ import { getAnalytics } from 'firebase/analytics'
 import NotFoundPage from './pages/NotFoundPage.tsx'
 
 // Lazy load routes for code splitting
-const PortfolioDesign = React.lazy(() => import('./pages/PortfolioDesign.tsx'))
+const HomePage = React.lazy(() => import('./pages/PortfolioDesign.tsx'))
+const ProjectsPage = React.lazy(() => import('./pages/ProjectsPage.tsx'))
 const CVPage = React.lazy(() => import('./pages/CvPage.tsx'))
+const ExperimentPage = React.lazy(() => import('./pages/ExperimentPage.tsx'))
 
 const firebaseConfig = {
   apiKey: import.meta.env.VITE_API_KEY,
@@ -32,11 +34,25 @@ const router = createBrowserRouter(
           <Suspense
             fallback={
               <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
-                <div className="text-lg">Loading Portfolio...</div>
+                <div className="text-lg">Loading...</div>
               </div>
             }
           >
-            <PortfolioDesign />
+            <HomePage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/projects"
+        element={
+          <Suspense
+            fallback={
+              <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
+                <div className="text-lg">Loading...</div>
+              </div>
+            }
+          >
+            <ProjectsPage />
           </Suspense>
         }
       />
@@ -51,6 +67,34 @@ const router = createBrowserRouter(
             }
           >
             <CVPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/experiment"
+        element={
+          <Suspense
+            fallback={
+              <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
+                <div className="text-lg">Loading Experiment...</div>
+              </div>
+            }
+          >
+            <ExperimentPage />
+          </Suspense>
+        }
+      />
+      <Route
+        path="/experiments"
+        element={
+          <Suspense
+            fallback={
+              <div className="min-h-screen flex items-center justify-center bg-slate-50 dark:bg-slate-900">
+                <div className="text-lg">Loading Experiment...</div>
+              </div>
+            }
+          >
+            <ExperimentPage />
           </Suspense>
         }
       />

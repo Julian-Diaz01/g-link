@@ -1,6 +1,6 @@
 import React, { Suspense, useMemo, useEffect } from 'react'
 import { ThemeProvider } from '../context/ThemeContext'
-import { Profile, Job, Education, Service, Artifact, Language } from '../types'
+import { Profile, Job, Education, Language } from '../types'
 import SEO from '../components/SEO'
 import {
   generateComprehensiveProfileSchema,
@@ -13,30 +13,22 @@ import { trackMetric } from '../utils/sentry'
 // Lazy load components for code splitting
 const Navigation = React.lazy(() => import('../components/Navigation'))
 const Hero = React.lazy(() => import('../components/Hero'))
-const Services = React.lazy(() => import('../components/Services'))
 const Experience = React.lazy(() => import('../components/Experience'))
 const EducationSection = React.lazy(() => import('../components/Education'))
 const Languages = React.lazy(() => import('../components/Languages.tsx'))
 const Contact = React.lazy(() => import('../components/Contact'))
 const ContactPopup = React.lazy(() => import('../components/ContactPopup'))
-const ProjectArtifacts = React.lazy(
-  () => import('../components/ProjectArtifacts'),
-)
 
 // Import JSON data
 import profileData from '../data/profile.json'
-import servicesData from '../data/services.json'
 import jobsData from '../data/jobs.json'
 import educationData from '../data/education.json'
-import artifactsData from '../data/projectArtifacts.json'
 
 const PortfolioDesign: React.FC = () => {
   // Type assertions for JSON imports
   const profile = profileData as Profile
-  const services = servicesData as Service[]
   const jobs = jobsData as Job[]
   const education = educationData as Education[]
-  const artifacts = artifactsData as Artifact[]
   const languages: Language[] = [
     {
       name: 'Spanish',
@@ -116,10 +108,7 @@ const PortfolioDesign: React.FC = () => {
     }
   }, [profile, jobs, education])
 
-  const breadcrumbs = [
-    { name: 'Home', url: 'https://juliandiaz.web.app/' },
-    { name: 'Portfolio', url: 'https://juliandiaz.web.app/' },
-  ]
+  const breadcrumbs = [{ name: 'Home', url: 'https://juliandiaz.web.app/' }]
 
   // Track page load
   useEffect(() => {
@@ -151,11 +140,9 @@ const PortfolioDesign: React.FC = () => {
         >
           <Navigation profile={profile} />
           <Hero profile={profile} />
-          <Services services={services} />
           <Experience jobs={jobs} />
           <EducationSection education={education} />
           <Languages languages={languages} />
-          <ProjectArtifacts artifacts={artifacts} />
           <Contact profile={profile} />
           <ContactPopup />
         </Suspense>
