@@ -1,4 +1,4 @@
-import React, { Suspense, useRef } from 'react'
+import React, { Suspense } from 'react'
 import { ThemeProvider } from '../context/ThemeContext'
 import SEO from '../components/SEO'
 import { Profile } from '../types'
@@ -11,8 +11,6 @@ const Navigation = React.lazy(() => import('../components/Navigation'))
 const profile = profileData as Profile
 
 const ExperimentPage: React.FC = () => {
-  const scrollContainerRef = useRef<HTMLElement>(null!)
-
   return (
     <ThemeProvider>
       <SEO
@@ -27,7 +25,7 @@ const ExperimentPage: React.FC = () => {
           { name: 'Experiment', url: `${profile.website}experiment` },
         ]}
       />
-      <div className="h-[100vh] relative overflow-hidden bg-slate-950 text-slate-100">
+      <div className="relative min-h-[320vh] bg-slate-950 text-slate-100">
         <ExperimentBackground />
 
         <Suspense
@@ -41,8 +39,8 @@ const ExperimentPage: React.FC = () => {
 
           <main className="relative min-h-screen pt-20 sm:pt-24">
             <ExperimentHeroIntro />
-            <section ref={scrollContainerRef} className="relative">
-              <div className="h-24" />
+            <section className="relative">
+              <div className="h-[220vh]" />
             </section>
           </main>
         </Suspense>
